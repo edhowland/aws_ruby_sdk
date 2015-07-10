@@ -1,0 +1,7 @@
+h1 'Links'
+
+h2 'Amazon Documentations'
+
+link 'Developer Guide','http://docs.aws.amazon.com/sdkforruby/api/index.html' 
+
+link 'API Documentation', 'http://docs.aws.amazon.com/sdkforruby/api/index.html'
