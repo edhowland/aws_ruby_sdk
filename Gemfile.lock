@@ -13,4 +13,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk-resources
+  aws-sdk-resources (~> 2)
