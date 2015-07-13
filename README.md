@@ -52,3 +52,9 @@ require 'lib/application'
 
 ```
 
+## Running a query
+
+The file: bin/query.rb will attempt to check if any instances of EC2 
+exist. For now, only EC2 resourcesare checked.
+
+

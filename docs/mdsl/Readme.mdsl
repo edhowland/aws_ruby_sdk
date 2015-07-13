@@ -54,3 +54,10 @@ require 'lib/application'
 # call something like:
 # ec2 = Aws::EC2::Resource.new
 EOC
+
+h2 'Running a query'
+
+para <<-EOP
+The file: bin/query.rb will attempt to check if any instances of EC2 
+exist. For now, only EC2 resourcesare checked.
+EOP
