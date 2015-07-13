@@ -1,7 +1,7 @@
 # credentials_spec.rb - specs for credentials method
 
 require_relative 'spec_helper'
-require 'credentials'
+require 'configuration'
 require 'minitest/autorun'
 #  ENV['AWS_ACCESS_KEY_ID']
 #  ENV['AWS_SECRET_ACCESS_KEY'] 

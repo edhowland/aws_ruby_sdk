@@ -1,7 +1,7 @@
 # region_spec.rb - spec for method load_region
 
 require_relative 'spec_helper'
-require 'region'
+require 'configuration'
 require 'minitest/autorun'
 
 # ENV['AWS_REGION'] 
