@@ -27,3 +27,28 @@ Currently, it just requires those files.
 Later, it can be set from a JSON or vial external shell script
 
 
+## Setup
+
+Before starting, run Bundler first to load the aws-sdk-resources gem if not 
+already installed.
+
+
+```
+$ bundle
+
+```
+
+### First code
+
+Once you have set your credentials and region in ~/.aws, you need to load into the environment.
+You can do this by requiring lib/application.rb:
+
+
+```
+require 'lib/application'
+
+# call something like:
+# ec2 = Aws::EC2::Resource.new
+
+```
+

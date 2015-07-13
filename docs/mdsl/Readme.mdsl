@@ -29,3 +29,28 @@ Just with credentials, you can adjust the method via the environment is set.
 Currently, it just requires those files.
 Later, it can be set from a JSON or vial external shell script
 EOP
+
+h2 'Setup'
+
+para <<-EOP
+Before starting, run Bundler first to load the aws-sdk-resources gem if not 
+already installed.
+EOP
+
+code <<-EOC
+$ bundle
+EOC
+
+h3 'First code'
+
+para <<-EOP
+Once you have set your credentials and region in ~/.aws, you need to load into the environment.
+You can do this by requiring lib/application.rb:
+EOP
+
+code <<-EOC
+require 'lib/application'
+
+# call something like:
+# ec2 = Aws::EC2::Resource.new
+EOC
