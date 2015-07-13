@@ -5,6 +5,8 @@ require 'credentials'
 require 'minitest/autorun'
 #  ENV['AWS_ACCESS_KEY_ID']
 #  ENV['AWS_SECRET_ACCESS_KEY'] 
+
+
 describe 'load_credentials' do
   before { load_credentials }
 

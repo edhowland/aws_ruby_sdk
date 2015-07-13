@@ -2,6 +2,7 @@
 
 # load_credentials_via_require - require file of credentials from outside this source tree
 def load_credentials_via_require
+  require File.expand_path('~/.aws/credentials')
 end
 
 # load_credentials - selects which method to use
