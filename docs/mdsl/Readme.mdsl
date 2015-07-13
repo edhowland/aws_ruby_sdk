@@ -1,15 +1,16 @@
-# AWS Ruby SDK
+h1 'AWS Ruby SDK'
 
-## abstract
+h2 'abstract'
 
+para <<-EOP
 Experimenting with AWS Ruby SDK. 
 Query available resources, etc.
+EOP
 
+h2 'Configuration'
 
-## Configuration
-
+para <<-EOP
 The AWS SDK can look for secret credentials in a few places.
 It prefers the enviroment. Therefore, currently this code
 looks in ~/.aws/credentials.rb.
-
-
+EOP
