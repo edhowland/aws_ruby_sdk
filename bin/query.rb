@@ -18,6 +18,10 @@ end
 puts "Found #{instance_count} Instances"
 
 
+
+#
+# obj = s3.bucket('bucket-name').object('key')
+#
 puts 'Acquiring S3 Rsources'
 
 s3 = s3_resource
@@ -26,7 +30,8 @@ puts 'Enumerating Buckets'
 buckets = s3.buckets
 bucket_count = 0
 buckets.each do |bucket|
-  puts 'Found bucket:'
+  puts "Found bucket: #{bucket.name}"
+
   bucket_count += 1
 end
 
