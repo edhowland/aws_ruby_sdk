@@ -14,6 +14,7 @@ begin
   instances.each do |instance|
     puts 'Instance of EC2'
     instance_count += 1
+    puts "Instance ID: #{instance.id}"
   end
 rescue => err
   puts "Enumerating EC2 instances raised error:"
@@ -36,11 +37,12 @@ buckets = s3.buckets
 bucket_count = 0
 begin
   buckets.each do |bucket|
-    puts "Found bucket: #{bucket.name}"
-    puts 'Enumerating objects in buckett'
-    bucket.objects.each {|obj| puts obj.key }
-
     bucket_count += 1
+    puts "Found bucket: #{bucket.name}"
+    puts "Bucket region: #{bucket.url}"
+    puts 'Enumerating objects in buckett'
+   bucket.objects.each {|obj| puts obj.key }
+
   end
 rescue => err
   puts "Enumerating S3 Buckets raised an error:"
