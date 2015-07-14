@@ -10,9 +10,14 @@ puts 'Enumerating EC2 Instances'
 puts 'This could take some few minutes.'
 instances = ec2.instances
 instance_count = 0
-instances.each do |instance|
-  puts 'Instance of EC2'
-  instance_count += 1
+begin
+  instances.each do |instance|
+    puts 'Instance of EC2'
+    instance_count += 1
+  end
+rescue => err
+  puts "Enumerating EC2 instances raised error:"
+  puts err.message
 end
 
 puts "Found #{instance_count} Instances"
@@ -29,10 +34,17 @@ s3 = s3_resource
 puts 'Enumerating Buckets'
 buckets = s3.buckets
 bucket_count = 0
-buckets.each do |bucket|
-  puts "Found bucket: #{bucket.name}"
+begin
+  buckets.each do |bucket|
+    puts "Found bucket: #{bucket.name}"
+    puts 'Enumerating objects in buckett'
+    bucket.objects.each {|obj| puts obj.key }
 
-  bucket_count += 1
+    bucket_count += 1
+  end
+rescue => err
+  puts "Enumerating S3 Buckets raised an error:"
+  puts err.message
 end
 
 puts "found #{bucket_count} S3 Buckets"
