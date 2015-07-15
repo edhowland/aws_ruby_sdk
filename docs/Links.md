@@ -2,5 +2,5 @@
 
 ## Amazon Documentations
 
-[D](e)
-[A](P)
+[Developer Guide](http://docs.aws.amazon.com/sdkforruby/api/index.html)
+[API Documentation](http://docs.aws.amazon.com/sdkforruby/api/index.html)
