@@ -2,7 +2,7 @@
 
 require 'optparse'
 
-def options banner='query'
+def options banner='query', &blk
   parser = OptionParser.new do |opts|
 
   opts.banner =banner
@@ -15,7 +15,7 @@ def options banner='query'
     end
 
 
-    opts.on('-l', '--list-all', 'Display currently set options') do
+    opts.on('-l', '--list-options', 'Display currently set options') do
     puts display_region
     exit
     end
