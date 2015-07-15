@@ -3,6 +3,9 @@
 
 require '../lib/application'
 
+# set any options on the command line
+options
+
 puts "Acquireing EC2 rsource in Region: #{ENV['AWS_REGION']}"
 ec2 = ec2_resource
 
