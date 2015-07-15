@@ -6,12 +6,12 @@ require 'minitest/mock'
 require 'minitest/autorun'
 
 def stub_region(region)
-  ARGV << '-r'
+  ARGV << '--region'
   ARGV << region
 end
 
 describe 'options' do
-  before { stub_region('us-west-2') }
+  before { stub_region('us-west-2'); options }
 
-  specify { ARGV[0].must_equal '-r' }
+  specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
 end
