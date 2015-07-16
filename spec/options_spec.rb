@@ -29,3 +29,16 @@ describe 'option method' do
     @mock.verify
   end
 end
+
+describe 'option using short name' do
+  before do
+    @mock = MiniTest::Mock.new
+    @mock.expect(:on, nil, ['-g', '--region', 'Set region'])
+
+    option @mock, :region, 'Set region', 'g'
+  end
+
+  it 'should set a short form option' do
+    @mock.verify
+  end
+end

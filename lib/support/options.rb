@@ -36,10 +36,10 @@ end
 
 
 # helper method to set option
-def option opts, method, description
+def option opts, method, description,  short=nil, &blk
   long =  method.to_s
-  short = long[0]
+  short = long[0] if short.nil?
   long = '--' + long
   short = '-' + short
-  opts.on(short, long, description)
+  opts.on(short, long, description, &blk)
 end
