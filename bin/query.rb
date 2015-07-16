@@ -3,6 +3,17 @@
 
 require '../lib/application'
 
+# specific option setter to this program
+def o opts, method, description
+  option opts, method, "Enumerate #{description}", method.to_s[5] do
+    self.send method
+  end  
+end
+
+def list_dummy
+  puts 'dummy'
+end
+
 def list_regions
   puts <<-EOP
 List of U.S. Regions:
@@ -91,6 +102,7 @@ end
 # set any options on the command line
 found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
+  o opts, :list_dummy, 'Dummy'
 
   option opts, :list_regions, 'Enumerate U.S. Regions', 'r' do
   found_options[:region] = true
