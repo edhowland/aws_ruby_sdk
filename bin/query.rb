@@ -8,7 +8,7 @@ def list_key_pairs
 end
 
 def list_ec2_instances
-  puts "Acquireing EC2 rsource in Region: #{ENV['AWS_REGION']}"
+  puts "Acquireing EC2 rsource in Region: #{region}"
   ec2 = ec2_resource
 
   puts 'Enumerating EC2 Instances'
