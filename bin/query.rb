@@ -3,6 +3,10 @@
 
 require '../lib/application'
 
+def list_key_pairs
+  puts 'Enumerating key pairs by name'
+end
+
 def list_ec2_instances
   puts "Acquireing EC2 rsource in Region: #{ENV['AWS_REGION']}"
   ec2 = ec2_resource
@@ -51,8 +55,12 @@ def list_s3_objects
 end
 
 # set any options on the command line
-found_options = {ec2: false, s3: false}
+found_options = {key: false, ec2: false, s3: false}
 options do|opts|
+  opts.on('-k', '--list-keys', 'Enumerate Key Pairs') do
+    found_options[:key] = true   
+    list_key_pairs
+  end
   opts.on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
     found_options[:ec2] = true
     list_ec2_instances
