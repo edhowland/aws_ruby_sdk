@@ -3,9 +3,13 @@
 
 require '../lib/application'
 
+
+@found_options = {xxx: false}
 # specific option setter to this program
-def o opts, method, description
+def o opts, method, description, options_set=@found_options
+  options_set[method] = false
   option opts, method, "Enumerate #{description}", method.to_s[5] do
+    options_set[method] = true
     self.send method
   end  
 end
@@ -144,7 +148,7 @@ options do|opts|
   end
 end
 
-unless found_options.values.reduce(false) {|i, j| i || j }
+unless @found_options.values.reduce(false) {|i, j| i || j }
   puts <<-EOP
 What do you want to query?
 Available options are:
