@@ -14,13 +14,16 @@ def options banner='query', &blk
     set_region(reg)
     end
 
-
     opts.on('-l', '--list-options', 'Display currently set options') do
     puts display_region
     exit
     end
 
 
+      opts.separator ""
+    yield opts if block_given?
+      opts.separator ""
+    
   opts.on('-h', '--help', 'Displays this help') do
     puts opts
     exit

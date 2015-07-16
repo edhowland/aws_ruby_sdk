@@ -51,10 +51,14 @@ def list_s3_objects
 end
 
 # set any options on the command line
-options
+options do|opts|
+  opts_on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
+    list_ec2_instances
+  end
 
-
-
-
+  opts.on('-s', '--list-s3', 'Enumerates S3 objects', ) do
+    list_s3_objects
+  end
+end
 
 puts 'Done'
