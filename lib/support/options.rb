@@ -46,7 +46,7 @@ end
 
 # helper method to set option
 def option opts, method, description,  short=nil, &blk
-  long =  method.to_s
+  long =  chain_case(method.to_s)
   short = long[0] if short.nil?
   long = '--' + long
   short = '-' + short

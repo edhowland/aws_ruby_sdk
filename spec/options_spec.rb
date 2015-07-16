@@ -55,3 +55,13 @@ describe 'option using short name' do
     @mock.verify
   end
 end
+
+describe 'option with snake_case method coverts to chain-case' do
+  before do
+    @mock = MiniTest::Mock.new
+    @mock.expect(:on, nil, ['-s', '--set-region', 'Set'])
+    option(@mock, :set_region, 'Set')
+  end
+
+  it('should have chain-case long form') { @mock.verify }
+end
