@@ -92,6 +92,10 @@ end
 found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
 
+  option opts, :dummy_optio, 'Dummy option' do
+    puts 'dummy'
+  exit
+  end
   opts.on('--list-regions', 'List all U.S. Regions') do
     found_options[:region] = true
     list_regions

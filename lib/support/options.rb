@@ -40,7 +40,11 @@ def options banner='query', &blk
 
 end
 
-  parser.parse!
+  begin
+    parser.parse!
+  rescue => err
+    puts err.message
+  end
 end
 
 
