@@ -33,6 +33,12 @@ end
 
 def list_security_groups
   puts 'List Security Groups'
+  ec2 = ec2_resource
+  ec2.security_groups.each do |group|
+    puts "group.id: #{group.id}"
+    puts "\tgroup.description: #{group.description}"
+    puts
+  end
 end
 
 def list_ec2_instances
