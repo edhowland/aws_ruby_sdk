@@ -73,6 +73,7 @@ options do|opts|
 
   opts.on('-a', '--list-all', 'Displays all queries') do
     found_options[:a] = true # not a required option, but satisfys that some option was found
+    list_key_pairs
     list_ec2_instances
     list_s3_objects
   end
@@ -82,6 +83,8 @@ unless found_options.values.reduce(false) {|i, j| i || j }
   puts <<-EOP
 What do you want to query?
 Available options are:
+
+-k, --list-keys: Enumerates Key Pairs by name
 -e, --list-ec2: List all EC2 instances
 -s, --list-s3: List all S3 objects
 -a, --list-all: List everything
