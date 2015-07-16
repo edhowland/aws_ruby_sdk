@@ -2,6 +2,12 @@
 
 require 'optparse'
 
+# return chain-case from snake_case
+def chain_case snake_case
+  snake_case =~ /(.+)_(.+)/
+  [$1, $2].join('-')
+end
+
 def options banner='query', &blk
   parser = OptionParser.new do |opts|
 

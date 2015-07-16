@@ -16,6 +16,12 @@ describe 'options' do
   specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
 end
 
+describe 'chain case from snake case' do
+  subject { chain_case 'snake_case' }
+
+  specify { subject.must_equal 'snake-case' }
+end
+
 describe 'option method' do
   let(:omock) { MiniTest::Mock.new }
   before do
