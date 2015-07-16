@@ -3,8 +3,20 @@
 
 require '../lib/application'
 
+def list_regions
+  puts <<-EOP
+List of U.S. Regions:
+
+us-west-1
+us-west-2
+us-east-1
+EOP
+end
+
 def list_key_pairs
   puts 'Enumerating key pairs by name'
+  ec2 = ec2_resource
+  ec2.key_pairs.each {|key| puts key.name }
 end
 
 def list_ec2_instances
@@ -55,8 +67,13 @@ def list_s3_objects
 end
 
 # set any options on the command line
-found_options = {key: false, ec2: false, s3: false}
+found_options = {region: false, key: false, ec2: false, s3: false}
 options do|opts|
+
+  opts.on('--list-regions', 'List all U.S. Regions') do
+    found_options[:region] = true
+    list_regions
+  end
   opts.on('-k', '--list-keys', 'Enumerate Key Pairs') do
     found_options[:key] = true   
     list_key_pairs
@@ -73,6 +90,7 @@ options do|opts|
 
   opts.on('-a', '--list-all', 'Displays all queries') do
     found_options[:a] = true # not a required option, but satisfys that some option was found
+    list_regions
     list_key_pairs
     list_ec2_instances
     list_s3_objects
@@ -84,6 +102,7 @@ unless found_options.values.reduce(false) {|i, j| i || j }
 What do you want to query?
 Available options are:
 
+--list-regions: List U.S. Regions
 -k, --list-keys: Enumerates Key Pairs by name
 -e, --list-ec2: List all EC2 instances
 -s, --list-s3: List all S3 objects
