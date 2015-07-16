@@ -108,11 +108,8 @@ found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, 
 options do|opts|
   o opts, :list_dummy, 'Dummy'
   o opts, :list_keys, 'Key Pairs by name'
+  o opts, :list_regions, 'U. S. Regions'
 
-  option opts, :list_regions, 'Enumerate U.S. Regions', 'r' do
-  found_options[:region] = true
-    list_regions
-  end
 
   option opts, :list_keys, 'Enumerate Key Pairs by name', 'k' do
     found_options[:key] = true
