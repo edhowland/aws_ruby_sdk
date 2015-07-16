@@ -13,7 +13,7 @@ us-east-1
 EOP
 end
 
-def list_key_pairs
+def list_keys
   puts 'Enumerating key pairs by name'
   ec2 = ec2_resource
   ec2.key_pairs.each {|key| puts key.name }
@@ -100,10 +100,6 @@ options do|opts|
   option opts, :list_keys, 'Enumerate Key Pairs by name', 'k' do
     found_options[:key] = true
     list_keys
-  end
-  opts.on('-k', '--list-keys', 'Enumerate Key Pairs') do
-    found_options[:key] = true   
-    list_key_pairs
   end
 
   opts.on('-v', '--list-vpc', 'Enumerate Virtual Private Clouds') do
