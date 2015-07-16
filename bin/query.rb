@@ -19,7 +19,7 @@ def list_key_pairs
   ec2.key_pairs.each {|key| puts key.name }
 end
 
-# list virtual private cloues
+# list virtual private clouds'
 def list_vpcs
   puts 'List of Virtual Private Clouds'
   ec2 = ec2_resource
@@ -29,6 +29,10 @@ def list_vpcs
   puts "\tvpc.state: #{vpc.state}"
   puts
   end
+end
+
+def list_security_groups
+  puts 'List Security Groups'
 end
 
 def list_ec2_instances
@@ -79,7 +83,7 @@ def list_s3_objects
 end
 
 # set any options on the command line
-found_options = {region: false, key: false,vpc: false,  ec2: false, s3: false}
+found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
 
   opts.on('--list-regions', 'List all U.S. Regions') do
@@ -94,6 +98,11 @@ options do|opts|
   opts.on('-v', '--list-vpc', 'Enumerate Virtual Private Clouds') do
     found_options[:vpc] = true
     list_vpcs
+  end
+
+  opts.on('-g', '--list-security-groups', 'Enumerate Security Groups') do
+    found_options[:sg] = true
+    list_security_groups
   end
   opts.on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
     found_options[:ec2] = true
@@ -110,6 +119,7 @@ options do|opts|
     list_regions
     list_key_pairs
     list_vpcs
+    list_security_groups
     list_ec2_instances
     list_s3_objects
   end
@@ -123,6 +133,7 @@ Available options are:
 --list-regions: List U.S. Regions
 -k, --list-keys: Enumerates Key Pairs by name
 -v, --list-vpc: List Virtual Private Clouds
+-g, --list-security-groups: List Security Groups
 -e, --list-ec2: List all EC2 instances
 -s, --list-s3: List all S3 objects
 -a, --list-all: List everything
