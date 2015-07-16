@@ -4,8 +4,11 @@ require 'optparse'
 
 # return chain-case from snake_case
 def chain_case snake_case
-  snake_case =~ /(.+)_(.+)/
-  [$1, $2].join('-')
+  if   snake_case =~ /(.+)_(.+)/
+    [$1, $2].join('-')
+  else
+  snake_case
+  end
 end
 
 def options banner='query', &blk

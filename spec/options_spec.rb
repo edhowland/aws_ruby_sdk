@@ -16,6 +16,13 @@ describe 'options' do
   specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
 end
 
+describe 'chain-case from no _s' do
+  subject { chain_case 'snake' }
+
+  specify { subject.must_equal 'snake' }
+end
+
+
 describe 'chain case from snake case' do
   subject { chain_case 'snake_case' }
 
