@@ -6,10 +6,10 @@ require '../lib/application'
 
 @found_options = {xxx: false}
 # specific option setter to this program
-def o opts, method, description, options_set=@found_options
-  options_set[method] = false
+def o opts, method, description
+  @found_options[method] = false
   option opts, method, "Enumerate #{description}", method.to_s[5] do
-    options_set[method] = true
+    @found_options[method] = true
     self.send method
   end  
 end
@@ -107,6 +107,7 @@ end
 found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
   o opts, :list_dummy, 'Dummy'
+  o opts, :list_keys, 'Key Pairs by name'
 
   option opts, :list_regions, 'Enumerate U.S. Regions', 'r' do
   found_options[:region] = true
@@ -148,7 +149,10 @@ options do|opts|
   end
 end
 
+puts 'options found'
+  p @found_options
 unless @found_options.values.reduce(false) {|i, j| i || j }
+
   puts <<-EOP
 What do you want to query?
 Available options are:
