@@ -33,3 +33,13 @@ end
 
   parser.parse!
 end
+
+
+# helper method to set option
+def option opts, method, description
+  long =  method.to_s
+  short = long[0]
+  long = '--' + long
+  short = '-' + short
+  opts.on(short, long, description)
+end

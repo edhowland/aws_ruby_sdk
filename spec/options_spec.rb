@@ -15,3 +15,17 @@ describe 'options' do
 
   specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
 end
+
+describe 'option method' do
+  let(:omock) { MiniTest::Mock.new }
+  before do
+    @mock = omock.expect(:on, nil, ['-r', '--reset', 'Reset things'])
+
+
+    option @mock, :reset, 'Reset things'
+  end
+
+  it 'should set option' do
+    @mock.verify
+  end
+end
