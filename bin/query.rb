@@ -19,6 +19,18 @@ def list_key_pairs
   ec2.key_pairs.each {|key| puts key.name }
 end
 
+# list virtual private cloues
+def list_vpcs
+  puts 'List of Virtual Private Clouds'
+  ec2 = ec2_resource
+  ec2.vpcs.each do |vpc|
+    puts "vpc.id: #{vpc.id}"
+  puts"\tvpc.is_default:: #{vpc.is_default.to_s}"
+  puts "\tvpc.state: #{vpc.state}"
+  puts
+  end
+end
+
 def list_ec2_instances
   puts "Acquireing EC2 rsource in Region: #{region}"
   ec2 = ec2_resource
@@ -67,7 +79,7 @@ def list_s3_objects
 end
 
 # set any options on the command line
-found_options = {region: false, key: false, ec2: false, s3: false}
+found_options = {region: false, key: false,vpc: false,  ec2: false, s3: false}
 options do|opts|
 
   opts.on('--list-regions', 'List all U.S. Regions') do
@@ -77,6 +89,11 @@ options do|opts|
   opts.on('-k', '--list-keys', 'Enumerate Key Pairs') do
     found_options[:key] = true   
     list_key_pairs
+  end
+
+  opts.on('-v', '--list-vpc', 'Enumerate Virtual Private Clouds') do
+    found_options[:vpc] = true
+    list_vpcs
   end
   opts.on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
     found_options[:ec2] = true
@@ -92,6 +109,7 @@ options do|opts|
     found_options[:a] = true # not a required option, but satisfys that some option was found
     list_regions
     list_key_pairs
+    list_vpcs
     list_ec2_instances
     list_s3_objects
   end
@@ -104,6 +122,7 @@ Available options are:
 
 --list-regions: List U.S. Regions
 -k, --list-keys: Enumerates Key Pairs by name
+-v, --list-vpc: List Virtual Private Clouds
 -e, --list-ec2: List all EC2 instances
 -s, --list-s3: List all S3 objects
 -a, --list-all: List everything
