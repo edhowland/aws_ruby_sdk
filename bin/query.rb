@@ -59,6 +59,11 @@ options do|opts|
   opts.on('-s', '--list-s3', 'Enumerates S3 objects', ) do
     list_s3_objects
   end
+
+  opts.on('-a', '--list-all', 'Displays all queries') do
+    list_ec2_instances
+    list_s3_objects
+  end
 end
 
 puts 'Done'
