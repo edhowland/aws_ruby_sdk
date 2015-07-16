@@ -96,10 +96,15 @@ options do|opts|
     puts 'dummy'
   exit
   end
-  opts.on('--list-regions', 'List all U.S. Regions') do
-    found_options[:region] = true
+
+  option opts, :list_regions, 'Enumerate U.S. Regions', 'r' do
+  found_options[:region] = true
     list_regions
   end
+  #opts.on('--list-regions', 'List all U.S. Regions') do
+    #found_options[:region] = true
+    #list_regions
+  #end
   opts.on('-k', '--list-keys', 'Enumerate Key Pairs') do
     found_options[:key] = true   
     list_key_pairs
