@@ -92,7 +92,7 @@ end
 found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
 
-  option opts, :dummy_optio, 'Dummy option' do
+  option opts, :dummy_option, 'Dummy option' do
     puts 'dummy'
   exit
   end
