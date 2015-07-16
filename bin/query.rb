@@ -52,7 +52,7 @@ end
 
 # set any options on the command line
 options do|opts|
-  opts_on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
+  opts.on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
     list_ec2_instances
   end
 
