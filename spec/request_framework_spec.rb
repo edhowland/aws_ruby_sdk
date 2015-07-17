@@ -23,7 +23,7 @@ describe RequestFramework do
   end
 
   describe 'option_list' do
-    specify { rqf.option_list.must_equal ['list-things', 'other-thing'] }
+    specify { rqf.option_list.must_equal ['--list-things', '--other-thing'] }
   end
 
   describe 'descriptions' do

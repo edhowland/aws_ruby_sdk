@@ -7,7 +7,7 @@ class RequestFramework
   end
 
   def option_list
-    handlers.map {|e| e.to_s }.map {|e| chain_case(e) }
+    handlers.map {|e| e.to_s }.map {|e| "--#{chain_case(e)}" }
   end
 
   def descriptions
