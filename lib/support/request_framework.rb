@@ -10,6 +10,12 @@ class RequestFramework
     handlers.map {|e| e.to_s }.map {|e| "--#{chain_case(e)}" }
   end
 
+  def short_options
+    shorts = {}
+    handlers.each {|h| shorts[h] = "-#{h.to_s[0]}" }
+    shorts
+  end
+
   def descriptions
     descripts = {}
     handlers.each do |handler|

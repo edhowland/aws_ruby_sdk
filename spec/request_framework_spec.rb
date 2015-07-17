@@ -26,6 +26,12 @@ describe RequestFramework do
     specify { rqf.long_options.must_equal ['--list-things', '--other-thing'] }
   end
 
+  describe 'short_options' do
+    before { @shorts = {list_things: '-l', other_thing: '-o'} }
+
+    specify { rqf.short_options.must_equal @shorts }
+  end
+
   describe 'descriptions' do
     before { @descriptions = {list_things: 'List Things', other_thing: 'Other Thing' } }
     specify { rqf.descriptions.must_equal @descriptions }
