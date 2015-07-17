@@ -46,7 +46,7 @@ def list_vpcs
   end
 end
 
-def list_security_groups
+def list_groups
   puts 'List Security Groups'
   ec2 = ec2_resource
   ec2.security_groups.each do |group|
@@ -56,7 +56,7 @@ def list_security_groups
   end
 end
 
-def list_ec2_instances
+def list_ec2
   puts "Acquireing EC2 rsource in Region: #{region}"
   ec2 = ec2_resource
 
@@ -78,7 +78,7 @@ def list_ec2_instances
   puts "Found #{instance_count} Instances"
 end
 
-def list_s3_objects
+def list_s3
   puts 'Acquiring S3 Rsources'
 
   s3 = s3_resource
@@ -104,36 +104,16 @@ def list_s3_objects
 end
 
 # set any options on the command line
-found_options = {region: false, key: false,vpc: false, sg: false,   ec2: false, s3: false}
 options do|opts|
-  o opts, :list_dummy, 'Dummy'
-  o opts, :list_keys, 'Key Pairs by name'
   o opts, :list_regions, 'U. S. Regions'
+  o opts, :list_keys, 'Key Pairs by name'
+  o opts, :list_vpcs, 'Virtual Private Clouds'
+  o opts, :list_groups, 'Security Groups'
+  o opts, :list_ec2, 'EC2 Instances'
+  o opts, :list_s3, 'S3 Objects'
 
 
-  option opts, :list_keys, 'Enumerate Key Pairs by name', 'k' do
-    found_options[:key] = true
-    list_keys
-  end
 
-  opts.on('-v', '--list-vpc', 'Enumerate Virtual Private Clouds') do
-    found_options[:vpc] = true
-    list_vpcs
-  end
-
-  opts.on('-g', '--list-security-groups', 'Enumerate Security Groups') do
-    found_options[:sg] = true
-    list_security_groups
-  end
-  opts.on('-e', '--list-ec2', 'Enumerates all EC2 instances in this region') do
-    found_options[:ec2] = true
-    list_ec2_instances
-  end
-
-  opts.on('-s', '--list-s3', 'Enumerates S3 objects', ) do
-    list_s3_objects
-    found_options[:s3] = true
-  end
 
   opts.on('-a', '--list-all', 'Displays all queries') do
     found_options[:a] = true # not a required option, but satisfys that some option was found
