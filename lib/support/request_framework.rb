@@ -7,7 +7,9 @@ class RequestFramework
   end
 
   def long_options
-    handlers.map {|e| e.to_s }.map {|e| "--#{chain_case(e)}" }
+    longs = {}
+    handlers.each {|e| longs[e] = "--#{chain_case(e)}" }
+    longs
   end
 
   def short_options

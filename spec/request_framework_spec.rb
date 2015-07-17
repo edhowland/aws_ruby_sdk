@@ -23,7 +23,8 @@ describe RequestFramework do
   end
 
   describe 'long_options' do
-    specify { rqf.long_options.must_equal ['--list-things', '--other-thing'] }
+    before { @longs = {list_things: '--list-things', other_thing: '--other-thing' } }
+    specify { rqf.long_options.must_equal @longs }
   end
 
   describe 'short_options' do
