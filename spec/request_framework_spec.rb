@@ -39,6 +39,6 @@ describe RequestFramework do
   end
 
   describe 'options_args' do
-    specify { rqf.options_args.must_equal [['-l', '--list-things', 'List Things'], ['-o', '--other-thing', 'Other Thing']] }
+    specify { rqf.options_args.must_equal [[:list_things, '-l', '--list-things', 'List Things'], [:other_thing, '-o', '--other-thing', 'Other Thing']] }
   end
 end
