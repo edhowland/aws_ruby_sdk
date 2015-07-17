@@ -7,9 +7,13 @@ require 'minitest/autorun'
 class Cut < RequestFramework
   def list_things description='List Things', &blk
     return yield description if block_given?
+
+    'list.things'
    end
   def other_thing description='Other Thing', &blk
     return yield description if block_given?
+
+    'other.thing'
    end
 
   include EndHandlers
@@ -17,6 +21,11 @@ end
 
 describe RequestFramework do
   let(:rqf) { Cut.new }
+
+  describe 'calling handler methods' do
+    specify { rqf.list_things.must_equal 'list.things' }
+    specify { rqf.other_thing.must_equal 'other.thing' }
+  end
 
   describe 'handlers' do
     specify { rqf.handlers.must_equal [:list_things, :other_thing] }
@@ -40,5 +49,9 @@ describe RequestFramework do
 
   describe 'options_args' do
     specify { rqf.options_args.must_equal [[:list_things, '-l', '--list-things', 'List Things'], [:other_thing, '-o', '--other-thing', 'Other Thing']] }
+  end
+
+  describe 'set_options' do
+
   end
 end

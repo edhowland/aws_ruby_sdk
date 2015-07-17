@@ -30,4 +30,7 @@ class RequestFramework
   def options_args
     handlers.map {|h| [h, short_options[h], long_options[h], descriptions[h] ] }
   end
+
+  def set_options opts
+  end
 end
