@@ -9,4 +9,12 @@ class RequestFramework
   def option_list
     handlers.map {|e| e.to_s }.map {|e| chain_case(e) }
   end
+
+  def descriptions
+    descripts = {}
+    handlers.each do |handler|
+      descripts[handler] = self.send(handler) {|d| d}
+    end
+    descripts
+  end
 end
