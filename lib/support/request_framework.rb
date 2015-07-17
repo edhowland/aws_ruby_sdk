@@ -6,7 +6,7 @@ class RequestFramework
     self.class.instance_methods[0..(idx - 1)]
   end
 
-  def option_list
+  def long_options
     handlers.map {|e| e.to_s }.map {|e| "--#{chain_case(e)}" }
   end
 

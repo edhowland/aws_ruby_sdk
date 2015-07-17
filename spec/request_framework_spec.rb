@@ -22,8 +22,8 @@ describe RequestFramework do
     specify { rqf.handlers.must_equal [:list_things, :other_thing] }
   end
 
-  describe 'option_list' do
-    specify { rqf.option_list.must_equal ['--list-things', '--other-thing'] }
+  describe 'long_options' do
+    specify { rqf.long_options.must_equal ['--list-things', '--other-thing'] }
   end
 
   describe 'descriptions' do
