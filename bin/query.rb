@@ -123,8 +123,6 @@ options do|opts|
   o opts, :list_all, 'All'
 end
 
-puts 'options found'
-  p @found_options
 unless @found_options.values.reduce(false) {|i, j| i || j }
 
   puts <<-EOP
