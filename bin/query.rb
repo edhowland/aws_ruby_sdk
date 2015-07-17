@@ -103,6 +103,15 @@ def list_s3
   puts "found #{bucket_count} S3 Buckets"
 end
 
+def list_all
+  list_regions
+  list_keys
+  list_vpcs
+  list_groups
+  list_ec2
+  list_s3
+end
+
 # set any options on the command line
 options do|opts|
   o opts, :list_regions, 'U. S. Regions'
@@ -111,19 +120,7 @@ options do|opts|
   o opts, :list_groups, 'Security Groups'
   o opts, :list_ec2, 'EC2 Instances'
   o opts, :list_s3, 'S3 Objects'
-
-
-
-
-  opts.on('-a', '--list-all', 'Displays all queries') do
-    found_options[:a] = true # not a required option, but satisfys that some option was found
-    list_regions
-    list_key_pairs
-    list_vpcs
-    list_security_groups
-    list_ec2_instances
-    list_s3_objects
-  end
+  o opts, :list_all, 'All'
 end
 
 puts 'options found'
