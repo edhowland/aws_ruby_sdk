@@ -37,4 +37,8 @@ describe RequestFramework do
     before { @descriptions = {list_things: 'List Things', other_thing: 'Other Thing' } }
     specify { rqf.descriptions.must_equal @descriptions }
   end
+
+  describe 'options_args' do
+    specify { rqf.options_args.must_equal [['-l', '--list-things', 'List Things'], ['-o', '--other-thing', 'Other Thing']] }
+  end
 end

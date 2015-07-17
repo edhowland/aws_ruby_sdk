@@ -25,4 +25,9 @@ class RequestFramework
     end
     descripts
   end
+
+  # workhorse fo this class
+  def options_args
+    handlers.map {|h| [short_options[h], long_options[h], descriptions[h] ] }
+  end
 end
