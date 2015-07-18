@@ -37,6 +37,10 @@ class RequestFramework
     handlers.map {|h| [h, short_options[h], long_options[h], descriptions[h] ] }
   end
 
+  def option_list
+    options_args.map {|o| "#{o[1]}, #{o[2]}\t#{o[3]}"  }.join("\n")
+  end
+
   def set_options opts
     options_args.each {|args| opts.on(*args[1..(-1)]) { @exec_list << args[0] } }
   end

@@ -104,4 +104,9 @@ describe RequestFramework do
 
     specify { @rf.options_given?.must_equal true }
   end
+
+  describe 'option_list' do
+    subject { rqf.option_list }
+    specify { subject.must_equal "-l, --list-things\tList Things\n-o, --other-thing\tOther Thing" }
+  end
 end
