@@ -3,13 +3,23 @@
 
 require_relative '../lib/application'
 
-options('EC2 Instance Operations') do |opts|
-  option opts, :create_key, 'Create Key Pair', 'k' do
-    puts 'Creating key pair'
+class Ec2Requestor < RequestFramework
+  def create_key description='Create Key Pair'
+    return yield description if block_given?
   end
 
-  option opts, :delete_key, 'Delete Key Pair' do
-    puts'Deleteing Key Pair'
+  def delete_key description='Delete Key Pair'
+    return yield description if block_given?
   end
+
+
+  include EndHandlers
+end
+
+requestor = Ec2Requestor.new
+
+
+options('EC2 Instance Operations') do |opts|
+  requestor.set_options opts
 
 end
