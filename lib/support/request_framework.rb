@@ -40,4 +40,8 @@ class RequestFramework
   def set_options opts
     options_args.each {|args| opts.on(*args[1..(-1)]) { @exec_list << args[0] } }
   end
+
+  def execute!
+    @exec_list.map {|h| self.send h }
+  end
 end

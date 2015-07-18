@@ -80,5 +80,17 @@ describe RequestFramework do
     end
 
     specify { @rf.exec_list.length.must_equal 2 }
+    specify { @rf.exec_list.must_equal [:list_things, :other_thing] }
+  end
+
+  describe 'execute!' do
+    before do
+      ARGV.clear; ARGV << '-o'
+      @rf = rqf
+
+      options {|opts| @rf.set_options opts }
+    end
+
+    specify { @rf.execute!.must_equal ['other.thing'] }
   end
 end
