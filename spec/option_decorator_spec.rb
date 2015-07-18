@@ -23,8 +23,9 @@ class OptionDecorator < HandlerFramework
 end
 
 # code Under Test
+# methods MUST be decorated with preceeding comment containing valid Ruby Hash
 class Cut < OptionDecorator
-  # description: 'List Things'
+  # { description: 'List Things' }
   def list_things; end
 end
 
@@ -35,11 +36,11 @@ describe OptionDecorator do
   end
 
   describe 'decorators' do
-    specify { opd.decorators.must_equal ["  # description: 'List Things'"]  }
+    specify { opd.decorators.must_equal ["  # { description: 'List Things' }"] }
   end
 
   describe 'decorators_hash' do
-    before { @h = {decription: 'List Things' } }
-    specify { opd.decorators_hash.must_equal @h }
+    before { @h = {description: 'List Things' } }
+    specify { opd.decorators_hash.must_equal [@h] }
   end
 end
