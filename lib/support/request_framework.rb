@@ -41,6 +41,10 @@ class RequestFramework
     options_args.each {|args| opts.on(*args[1..(-1)]) { @exec_list << args[0] } }
   end
 
+  def options_given?
+    ! @exec_list.empty?
+  end
+
   def execute!
     @exec_list.map {|h| self.send h }
   end

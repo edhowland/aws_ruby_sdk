@@ -93,4 +93,15 @@ describe RequestFramework do
 
     specify { @rf.execute!.must_equal ['other.thing'] }
   end
+
+  describe 'options_given?' do
+    before do
+      ARGV.clear; ARGV << '-o'
+      @rf = rqf
+
+      options {|opts| @rf.set_options opts }
+    end
+
+    specify { @rf.options_given?.must_equal true }
+  end
 end
