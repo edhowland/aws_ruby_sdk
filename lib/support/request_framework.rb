@@ -1,6 +1,9 @@
 # request_framework.rb - class RequestFramework
 
 class RequestFramework
+  def initialize
+  end
+
   def handlers
     idx = self.class.instance_methods.index(:_end)
     self.class.instance_methods[0..(idx - 1)]
@@ -32,5 +35,6 @@ class RequestFramework
   end
 
   def set_options opts
+    options_args.each {|args| opts.on(*args[1..(-1)]) }
   end
 end

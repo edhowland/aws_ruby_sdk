@@ -2,6 +2,7 @@
 
 require_relative 'spec_helper'
 require 'application'
+require 'minitest/mock'
 require 'minitest/autorun'
 
 class Cut < RequestFramework
@@ -52,6 +53,15 @@ describe RequestFramework do
   end
 
   describe 'set_options' do
+    before do
+      @mock = MiniTest::Mock.new
+      @mock.expect(:on, nil, ['-l', '--list-things', 'List Things'])
+      @mock.expect(:on, nil, ['-o', '--other-thing', 'Other Thing'])
+    end
+
+    subject { rqf.set_options @mock }
+
+    specify { subject; @mock.verify }
 
   end
 end
