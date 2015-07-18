@@ -2,7 +2,10 @@
 
 class RequestFramework
   def initialize
+    @exec_list = []
   end
+
+  attr_reader :exec_list
 
   def handlers
     idx = self.class.instance_methods.index(:_end)

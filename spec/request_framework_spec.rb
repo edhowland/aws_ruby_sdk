@@ -7,6 +7,7 @@ require 'minitest/autorun'
 
 class Cut < RequestFramework
   def initialize
+    super
   end
 
   def list_things description='List Things', &blk
@@ -65,6 +66,19 @@ describe RequestFramework do
     subject { rqf.set_options @mock }
 
     specify { subject; @mock.verify }
+  end
 
+  describe 'exec_list' do
+      before do
+      ARGV.clear
+      ARGV << '-l'; ARGV << '--other-thing'
+
+      @rf = rqf
+      options do |opts|
+        @rf.set_options opts
+      end
+    end
+
+    specify { @rf.exec_list.length.must_equal 2 }
   end
 end
