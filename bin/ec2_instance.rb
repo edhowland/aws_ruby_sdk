@@ -19,7 +19,6 @@ class Ec2Requestor < RequestFramework
   end
 
 
-  include EndHandlers
 end
 
 requestor = Ec2Requestor.new

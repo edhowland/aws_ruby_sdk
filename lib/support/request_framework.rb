@@ -1,6 +1,7 @@
 # request_framework.rb - class RequestFramework
 
-class RequestFramework
+# Abstract class for command line option handlers. (See RequestFramework below)
+class HandlerFramework
   def initialize
     @exec_list = []
   end
@@ -53,3 +54,15 @@ class RequestFramework
     @exec_list.map {|h| self.send h }
   end
 end
+
+# include EndHandlers after defining your event methods
+module EndHandlers
+  def _end; end
+end
+
+
+# RequestFramework - helper for HandlerFramework. subclass this class
+class RequestFramework < HandlerFramework
+  include EndHandlers
+end
+

@@ -20,8 +20,6 @@ class Cut < RequestFramework
 
     'other.thing'
    end
-
-  include EndHandlers
 end
 
 describe RequestFramework do

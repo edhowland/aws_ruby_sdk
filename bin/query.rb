@@ -18,7 +18,8 @@ requestor = QueryRequestor.new
 
 # set options from command line
 options do |opts|
-#  requestor.set_options opts
+  requestor.set_options opts
 end
 
-# check_and_execute requesto#r
+ check_and_execute requestor
+
