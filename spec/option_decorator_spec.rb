@@ -16,6 +16,9 @@ class OptionDecorator < HandlerFramework
     method_list.map {|m| source = m.source_location; read_line(source[0], source[1] - 1) }
   end
 
+  def decorators_hash
+    decorators.map {|d| eval( d.split('#')[1]) }
+  end
 
 end
 
@@ -33,5 +36,10 @@ describe OptionDecorator do
 
   describe 'decorators' do
     specify { opd.decorators.must_equal ["  # description: 'List Things'"]  }
+  end
+
+  describe 'decorators_hash' do
+    before { @h = {decription: 'List Things' } }
+    specify { opd.decorators_hash.must_equal @h }
   end
 end
