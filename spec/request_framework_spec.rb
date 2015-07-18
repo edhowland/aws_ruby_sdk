@@ -6,6 +6,9 @@ require 'minitest/mock'
 require 'minitest/autorun'
 
 class Cut < RequestFramework
+  def initialize
+  end
+
   def list_things description='List Things', &blk
     return yield description if block_given?
 
