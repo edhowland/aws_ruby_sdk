@@ -38,6 +38,6 @@ class RequestFramework
   end
 
   def set_options opts
-    options_args.each {|args| opts.on(*args[1..(-1)]) }
+    options_args.each {|args| opts.on(*args[1..(-1)]) { @exec_list << args[0] } }
   end
 end
