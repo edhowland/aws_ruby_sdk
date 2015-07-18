@@ -3,6 +3,7 @@
 
 require_relative '../lib/application'
 require './messages'
+require './requestor'
 
 class Ec2Requestor < RequestFramework
   def create_key description='Create Key Pair'
@@ -28,10 +29,6 @@ options('EC2 Instance Operations') do |opts|
   requestor.set_options opts
 end
 
+check_and_execute requestor
 
-unless requestor.options_given?
-  what_do_you_want_to_do requestor
-  else
-  # now call actually requested options
-  requestor.execute!
-end
+
