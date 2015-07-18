@@ -2,6 +2,7 @@
 # ec2_instance.rb - work with ec2 instance
 
 require_relative '../lib/application'
+require './messages'
 
 class Ec2Requestor < RequestFramework
   def create_key description='Create Key Pair'
@@ -28,5 +29,9 @@ options('EC2 Instance Operations') do |opts|
 end
 
 
-# now call actually requested options
-requestor.execute!
+unless requestor.options_given?
+  what_do_you_want_to_do requestor
+  else
+  # now call actually requested options
+  requestor.execute!
+end
