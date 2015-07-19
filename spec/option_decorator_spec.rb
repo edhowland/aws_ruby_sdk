@@ -30,6 +30,11 @@ describe OptionDecorator do
     before { @h = {list_things: {description: 'List Things'} } }
     specify { opd.decorators.must_equal @h }
   end
+
+  describe 'options_args' do
+    specify { opd.options_args.must_equal [[:list_things, '-l', '--list-things', 'List Things'] ] }
+
+  end
 end
 
 

@@ -37,4 +37,11 @@ class OptionDecorator < HandlerFramework
     decorations
   end
 
+  def options_args
+    @options.keys.reduce([]) do |i, o|
+      i <<[o, @options[o][:short], @options[o][:long], @options[o][:description]]
+      i
+    end
+  end
+
 end
