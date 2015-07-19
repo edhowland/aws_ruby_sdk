@@ -38,9 +38,4 @@ describe OptionDecorator do
   describe 'decorators' do
     specify { opd.decorators.must_equal [{list_things: "  # { description: 'List Things' }"}] }
   end
-
-  describe 'decorators_hash' do
-    before { @h = {description: 'List Things' } }
-    specify { skip(); opd.decorators_hash.must_equal [@h] }
-  end
 end
