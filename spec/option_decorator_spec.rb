@@ -109,4 +109,14 @@ describe MixedCut do
 
     specify { @mx.exec_list.must_equal [[:list_regions]] }
   end
+
+  describe 'exec_list with 2 options and with arg' do
+    before do
+      ARGV.clear; ARGV << '--set-name'; ARGV << 'Mark'; ARGV << '-r'
+      @mx = mx
+      options {|opts| @mx.set_options opts }
+  end
+
+    specify { @mx.exec_list.must_equal [[:set_name, 'Mark'], [:list_regions]] }
+  end
 end
