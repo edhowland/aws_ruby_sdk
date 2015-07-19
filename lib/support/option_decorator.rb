@@ -27,8 +27,10 @@ class OptionDecorator < HandlerFramework
       options = decorations[key]
       long = chain_case key.to_s
       long = "--#{long}"
+      long += ' name' unless options[:arg].nil?
       short = options[:short] || key.to_s[0]
       short = "-#{short}"
+      short += ' name' unless options[:arg].nil?
 
         options[:long] = long
       options[:short] = short
@@ -39,7 +41,11 @@ class OptionDecorator < HandlerFramework
 
   def options_args
     @options.keys.reduce([]) do |i, o|
-      i <<[o, @options[o][:short], @options[o][:long], @options[o][:description]]
+      if @options[o][:arg].nil?
+        i <<[o, @options[o][:short], @options[o][:long], @options[o][:description]]
+      else
+        i << [o, @options[o][:short], @options[o][:long], @options[o][:arg], @options[o][:description]]
+      end
       i
     end
   end

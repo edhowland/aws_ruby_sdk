@@ -53,11 +53,20 @@ describe MultiCut do
   describe 'expand_options' do
     before do
       @h = {
-        create_key: {description: 'Create Key Pair', long: '--create-key', short: '-k', arg: String},
-        delete_key: {description: 'Delete Key Pair', long: '--delete-key', short: '-d', arg: String}
+        create_key: {description: 'Create Key Pair', long: '--create-key name', short: '-k name', arg: String},
+        delete_key: {description: 'Delete Key Pair', long: '--delete-key name', short: '-d name', arg: String}
       }
     end
 
     specify { mcut.options.must_equal @h }
+  end
+
+
+  describe 'options_args with values' do
+    specify { mcut.options_args.must_equal [
+      [:create_key, '-k name', '--create-key name', String, 'Create Key Pair'],
+      [:delete_key, '-d name', '--delete-key name', String, 'Delete Key Pair']
+
+    ] }
   end
 end
