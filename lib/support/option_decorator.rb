@@ -52,7 +52,11 @@ class OptionDecorator < HandlerFramework
 
   def set_options opts
     options_args.each do |arg|
+      if true
        opts.on(*arg[1..-1])
+      else
+       opts.on(*arg[1..-1])
+    end
     end
   end
 end
