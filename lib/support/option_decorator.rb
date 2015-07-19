@@ -52,10 +52,10 @@ class OptionDecorator < HandlerFramework
 
   def set_options opts
     options_args.each do |arg|
-      if true
-       opts.on(*arg[1..-1])
+      if @options[arg[0]][:arg].nil?
+       opts.on(*arg[1..-1]) { @exec_list << [arg[0]] }
       else
-       opts.on(*arg[1..-1])
+       opts.on(*arg[1..-1]) {|name| @exec_list << [arg[0], name] }
     end
     end
   end
