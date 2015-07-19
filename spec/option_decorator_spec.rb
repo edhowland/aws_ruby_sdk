@@ -29,6 +29,15 @@ class Cut < OptionDecorator
   def list_things; end # { description: 'List Things' }
 end
 
+
+class MultiCut < OptionDecorator
+  def create_key nme # {decription: 'Create Key Pair', short: 'k', arg: String}
+  end
+
+  def delete_key name # {description: 'Delete Key Pair', arg: String}
+  end
+end
+
 describe OptionDecorator do
   let(:opd) { Cut.new }
   describe 'method_list' do
@@ -38,5 +47,17 @@ describe OptionDecorator do
   describe 'decorators' do
     before { @h = {list_things: {description: 'List Things'} } }
     specify { opd.decorators.must_equal @h }
+  end
+end
+
+
+describe MultiCut do
+  let(:mcut) { MultiCut.new }
+
+  describe 'decorators' do
+    before { @h = {
+      create_key: {},
+      delete_key: {}
+    } }
   end
 end
