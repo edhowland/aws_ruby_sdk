@@ -31,7 +31,7 @@ end
 
 
 class MultiCut < OptionDecorator
-  def create_key nme # {decription: 'Create Key Pair', short: 'k', arg: String}
+  def create_key nme # {description: 'Create Key Pair', short: 'k', arg: String}
   end
 
   def delete_key name # {description: 'Delete Key Pair', arg: String}
@@ -56,8 +56,10 @@ describe MultiCut do
 
   describe 'decorators' do
     before { @h = {
-      create_key: {},
-      delete_key: {}
+      create_key: {description: 'Create Key Pair', short: 'k', arg: String},
+      delete_key: {description: 'Delete Key Pair', arg: String}
     } }
+
+    specify { mcut.decorators.must_equal @h }
   end
 end
