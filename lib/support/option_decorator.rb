@@ -50,4 +50,9 @@ class OptionDecorator < HandlerFramework
     end
   end
 
+  def set_options opts
+    options_args.each do |arg|
+       opts.on(*arg[1..-1])
+    end
+  end
 end

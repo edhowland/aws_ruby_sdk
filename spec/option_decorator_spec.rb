@@ -2,6 +2,7 @@
 
 require_relative 'spec_helper'
 require 'application'
+require 'minitest/mock'
 require 'minitest/autorun'
 
 
@@ -68,5 +69,30 @@ describe MultiCut do
       [:delete_key, '-d name', '--delete-key name', String, 'Delete Key Pair']
 
     ] }
+  end
+
+end
+
+class MixedCut < OptionDecorator
+  def list_region # {description: 'List U. S. Regions', short: 'r'}
+'us-west-1'
+  end    
+
+  def set_name name # {description: 'Set name', arg: String }
+  end
+end
+
+
+describe 'set_options' do
+  let(:mx) { MixedCut.new }
+  before do
+    @mock = MiniTest::Mock.new
+    @mock.expect(:on, nil, ['-r', '--list-region', 'List U. S. Regions' ])
+    @mock.expect(:on, nil, ['-s name', '--set-name name', String, 'Set name'  ])
+  end
+
+  it 'should set options via on() method' do
+    mx.set_options @mock
+    @mock.verify
   end
 end
