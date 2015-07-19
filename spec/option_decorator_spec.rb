@@ -13,7 +13,8 @@ class OptionDecorator < HandlerFramework
 
   # returns lines preceding each method def
   def decorators
-    method_list.map {|m| source = m.source_location; {m.name => read_line(source[0], source[1] - 1)} }
+    method_list.map {|m| source = m.source_location; {m.name => read_line(source[0], source[1] )} }
+    method_list.reduce({}) {|i,  m| i[m.name] = eval(read_line(*m.source_location)) ; i }
   end
 
   def decorators_hash
