@@ -74,7 +74,7 @@ describe MultiCut do
 end
 
 class MixedCut < OptionDecorator
-  def list_region # {description: 'List U. S. Regions', short: 'r'}
+  def list_regions # {description: 'List U. S. Regions', short: 'r'}
 'us-west-1'
   end    
 
@@ -83,16 +83,30 @@ class MixedCut < OptionDecorator
 end
 
 
-describe 'set_options' do
-  let(:mx) { MixedCut.new }
-  before do
-    @mock = MiniTest::Mock.new
-    @mock.expect(:on, nil, ['-r', '--list-region', 'List U. S. Regions' ])
-    @mock.expect(:on, nil, ['-s name', '--set-name name', String, 'Set name'  ])
+describe MixedCut do
+    let(:mx) { MixedCut.new }
+
+  describe 'set_options' do
+    before do
+      @mock = MiniTest::Mock.new
+      @mock.expect(:on, nil, ['-r', '--list-regions', 'List U. S. Regions' ])
+      @mock.expect(:on, nil, ['-s name', '--set-name name', String, 'Set name'  ])
+    end
+
+    it 'should set options via on() method' do
+      mx.set_options @mock
+      @mock.verify
+    end
   end
 
-  it 'should set options via on() method' do
-    mx.set_options @mock
-    @mock.verify
+
+  describe 'exec_list' do
+    before do
+      ARGV.clear; ARGV << '-r'
+      @mx = mx
+      options {|opts| @mx.set_options opts }
+    end
+
+    specify { @mx.exec_list.must_equal [[:list_regions]] }
   end
 end

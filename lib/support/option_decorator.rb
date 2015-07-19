@@ -4,6 +4,7 @@ class OptionDecorator < HandlerFramework
 
   def initialize
     @options = expand_options
+    @exec_list = []
   end
 
   attr_reader :options
