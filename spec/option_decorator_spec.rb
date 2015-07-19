@@ -25,8 +25,7 @@ end
 # code Under Test
 # methods MUST be decorated with preceeding comment containing valid Ruby Hash
 class Cut < OptionDecorator
-  # { description: 'List Things' }
-  def list_things; end
+  def list_things; end # { description: 'List Things' }
 end
 
 describe OptionDecorator do
