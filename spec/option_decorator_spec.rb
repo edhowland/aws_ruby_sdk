@@ -62,4 +62,15 @@ describe MultiCut do
 
     specify { mcut.decorators.must_equal @h }
   end
+
+  describe 'expand_options' do
+    before do
+      @h = {
+        create_key: {description: 'Create Key Pair', long: '--create_key', short: '-k', arg: String},
+        delete_key: {description: 'Delete Key Pair', long: '--delete-key', short: '-d', arg: String}
+      }
+    end
+
+    specify { mcut.expand_options.must_equal @h }
+  end
 end
