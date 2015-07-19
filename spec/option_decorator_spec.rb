@@ -20,6 +20,21 @@ class OptionDecorator < HandlerFramework
     method_list.reduce({}) {|i,  m| i[m.name] = eval_source(m.source_location); i }
   end
 
+  def expand_options
+      decorations = decorators
+    decorators.keys.each do |key|
+      options = decorations[key]
+      long = chain_case key.to_s
+      long = "--#{long}"
+      short = options[:short] || key.to_s[0]
+      short = "-#{short}"
+
+        options[:long] = long
+      options[:short] = short
+    end
+
+    decorations
+  end
 
 end
 
@@ -66,7 +81,7 @@ describe MultiCut do
   describe 'expand_options' do
     before do
       @h = {
-        create_key: {description: 'Create Key Pair', long: '--create_key', short: '-k', arg: String},
+        create_key: {description: 'Create Key Pair', long: '--create-key', short: '-k', arg: String},
         delete_key: {description: 'Delete Key Pair', long: '--delete-key', short: '-d', arg: String}
       }
     end
