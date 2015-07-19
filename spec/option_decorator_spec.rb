@@ -53,6 +53,6 @@ describe MultiCut do
       }
     end
 
-    specify { mcut.expand_options.must_equal @h }
+    specify { mcut.options.must_equal @h }
   end
 end

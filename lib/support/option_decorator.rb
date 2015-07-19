@@ -2,6 +2,12 @@
 class OptionDecorator < HandlerFramework
   def _end; end # need this to signal end of sublass method list
 
+  def initialize
+    @options = expand_options
+  end
+
+  attr_reader :options
+
   def eval_source source_and_line 
     line = read_line *source_and_line
     method_and_comment = line.split('#')
