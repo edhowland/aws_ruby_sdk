@@ -14,8 +14,8 @@ class QueryRequestor < OptionDecorator
   end
 
 
-    def format_keyname name # {description: 'Format Key Name: E.g. username.company-us-east-1', arg: String}
-
+    def format_keyname name # {description: 'Format Key Name: E.g. username.company', arg: String}
+    puts key_name name
   end
 
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
@@ -30,7 +30,7 @@ EOP
   def list_keys # {description: 'List Key Pairs', short: 'k'}
     puts 'Enumerating key pairs by name'
     @ec2.key_pairs.each do |key|
-       puts key.name 
+       puts key.key_name 
     puts "\tfingerprint: #{key.key_fingerprint}"
     end
   end

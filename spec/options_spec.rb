@@ -11,9 +11,10 @@ def stub_region(region)
 end
 
 describe 'options' do
-  before { stub_region('us-west-2'); options }
+  #before { stub_region('us-west-2'); options }
 
-  specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
+  #specify { ENV['AWS_REGION'].must_equal 'us-west-2'}
+  #after { load_region }
 end
 
 describe 'chain-case from no _s' do

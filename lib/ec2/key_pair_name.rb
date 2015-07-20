@@ -5,3 +5,7 @@ def key_pair_name user, identifier
   "#{user}.#{identifier}.#{region}"
 end
 
+def key_name name
+  key_pair_name *name.split('.')
+end
+

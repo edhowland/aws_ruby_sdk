@@ -6,8 +6,19 @@ require './messages'
 require './requestor'
 
 class Ec2Requestor < OptionDecorator
+  def initialize
+    super
+    @ec2 = ec2_resource
+  end
+
   def create_key name # {description: 'Create Key Pair', arg: String }
-    puts 'Creating Key Pair' + ' ' + name
+    keyname = key_name name
+    puts "Creating Key Pair: #{keyname}"
+    key_pair = @ec2.key_pairs.create keyname
+
+    keyfname = keyname + '_rsa'
+  File.write(keyfname, '(Smack Stuff)')
+    puts "Wrote private key to: #{keyfname}"
   end
 
   def delete_key name # {description: 'Delete Key Pair', arg: String }
