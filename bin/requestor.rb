@@ -5,6 +5,10 @@ def check_and_execute requestor
     what_do_you_want_to_do requestor
     else
     # now call actually requested options
-    requestor.execute!
+begin
+      requestor.execute!
+rescue => err
+  puts err.message
+end
   end
 end

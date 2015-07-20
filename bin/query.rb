@@ -20,6 +20,8 @@ class QueryRequestor < OptionDecorator
 
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
     puts <<-EOP
+Valid U. S. Region handles:
+
 us-east-1
 us-west-1
 us-west-2
