@@ -79,6 +79,7 @@ class MixedCut < OptionDecorator
   end    
 
   def set_name name # {description: 'Set name', arg: String }
+    name
   end
 end
 
@@ -118,5 +119,21 @@ describe MixedCut do
   end
 
     specify { @mx.exec_list.must_equal [[:set_name, 'Mark'], [:list_regions]] }
+  end
+
+  describe 'execute' do
+    specify { mx.execute([:list_regions]).must_equal 'us-west-1' }
+    specify { mx.execute([:set_name, 'Mark']).must_equal 'Mark' }
+  end
+
+  describe 'execute!' do
+    before do
+      ARGV.clear; ARGV << '-r'
+      @mx =mx
+      options {|opts| @mx.set_options opts }
+    end
+
+    specify {@mx.execute!.must_equal 'us-west-1' }
+
   end
 end

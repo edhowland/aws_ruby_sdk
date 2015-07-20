@@ -60,4 +60,16 @@ class OptionDecorator < HandlerFramework
     end
     end
   end
+
+  def execute code
+    if @options[code[0]][:arg].nil?
+      self.send code[0]
+    else
+      self.send code[0],  code[1]
+    end
+  end
+
+  def execute!
+    @exec_list.reduce('') {|i, e| i += execute e }
+  end
 end
