@@ -78,4 +78,8 @@ class OptionDecorator
   def execute!
     @exec_list.reduce('') {|i, e| i += execute e }
   end
+
+  def option_list
+    @options.keys.map {|key| "#{@options[key][:short]}, #{@options[key][:long]}\t#{@options[key][:description]}" }.join("\n")
+  end
 end

@@ -134,6 +134,9 @@ describe MixedCut do
     end
 
     specify {@mx.execute!.must_equal 'us-west-1' }
+  end
 
+  describe 'option_list' do
+    specify { mx.option_list.must_equal "-r, --list-regions\tList U. S. Regions\n-s name, --set-name name\tSet name" }
   end
 end
