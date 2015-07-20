@@ -79,6 +79,10 @@ class OptionDecorator
     @exec_list.reduce('') {|i, e| i += execute e }
   end
 
+  def options_given?
+    ! @exec_list.empty?
+  end
+
   def option_list
     @options.keys.map {|key| "#{@options[key][:short]}, #{@options[key][:long]}\t#{@options[key][:description]}" }.join("\n")
   end

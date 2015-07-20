@@ -5,17 +5,13 @@ require_relative '../lib/application'
 require './messages'
 require './requestor'
 
-class Ec2Requestor < RequestFramework
-  def create_key description='Create Key Pair'
-    return yield description if block_given?
-
-    puts 'Creating Key Pair'
+class Ec2Requestor < OptionDecorator
+  def create_key name # {description: 'Create Key Pair', arg: String }
+    puts 'Creating Key Pair' + ' ' + name
   end
 
-  def delete_key description='Delete Key Pair'
-    return yield description if block_given?
-
-    puts 'Deleting Key Pair'
+  def delete_key name # {description: 'Delete Key Pair', arg: String }
+    puts "Deleting Key Pair : #{name}"
   end
 
 
