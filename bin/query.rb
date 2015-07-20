@@ -37,6 +37,12 @@ EOP
   end
 
   def list_groups # {description: 'List Security Groups', short: 'g'}
+    puts 'List Security Groups'
+    @ec2.security_groups.each do |group|
+      puts "group.id: #{group.id}"
+      puts "\tgroup.description: #{group.description}"
+      puts
+    end
   end
 
   def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
