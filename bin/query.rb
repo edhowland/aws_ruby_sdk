@@ -46,6 +46,22 @@ EOP
   end
 
   def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
+    puts 'Enumerating EC2 Instances'
+    puts 'This could take some few minutes.'
+    instances = @ec2.instances
+    instance_count = 0
+    begin
+      instances.each do |instance|
+        puts 'Instance of EC2'
+        instance_count += 1
+        puts "Instance ID: #{instance.id}"
+      end
+    rescue => err
+      puts "Enumerating EC2 instances raised error:"
+      puts err.message
+    end
+
+    puts "Found #{instance_count} Instances"
   end
 
   def list_s3 # {description: 'List S3 Objects', short: 's'}
