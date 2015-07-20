@@ -5,16 +5,24 @@ require_relative '../lib/application'
 require './messages'
 require './requestor'
 
+# check key name syntax: must be form of: name.name
+def check_key_name_syntax keyname
+  raise RuntimeError.new("Key name: #{keyname} invalid/ Must be 'name.handle'") if keyname.split('.').length != 2
+end
+
 class Ec2Requestor < OptionDecorator
   def initialize
     super
     @ec2 = ec2_resource
+    @ec2_options = {dry_run: true} # TODO: must be: = {}
   end
 
   def create_key name # {description: 'Create Key Pair', arg: String }
+    check_key_name_syntax name
     keyname = key_name name
     puts "Creating Key Pair: #{keyname}"
-    key_pair = @ec2.key_pairs.create keyname
+    @ec2_options[:key_name] = keyname
+    key_pair = @ec2.create_key_pair @ec2_options
 
     keyfname = keyname + '_rsa'
   File.write(keyfname, '(Smack Stuff)')
