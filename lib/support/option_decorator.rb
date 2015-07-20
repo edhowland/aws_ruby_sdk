@@ -76,7 +76,7 @@ class OptionDecorator
   end
 
   def execute!
-    @exec_list.reduce('') {|i, e| i += execute e }
+    @exec_list.each {|e| execute e }
   end
 
   def options_given?
