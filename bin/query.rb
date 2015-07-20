@@ -23,7 +23,9 @@ EOP
 
   def list_keys # {description: 'List Key Pairs', short: 'k'}
     puts 'Enumerating key pairs by name'
-    @ec2.key_pairs.each {|key| puts key.name }
+    @ec2.key_pairs.each do |key|
+       puts key.name 
+    end
   end
 
   def list_vpcs # {description: 'List Virtual Private Clouds', short: 'v'}
