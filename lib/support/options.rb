@@ -25,6 +25,7 @@ def options banner='query', &blk
 
     opts.on('-l', '--list-options', 'Display currently set options') do
     puts display_region
+    puts display_host
     exit
     end
 
