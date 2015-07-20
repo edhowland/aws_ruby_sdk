@@ -12,6 +12,12 @@ class QueryRequestor < OptionDecorator
     super     # mandatory call super class initializer
     @ec2 = ec2_resource
   end
+
+
+    def format_keyname name # {description: 'Format Key Name: E.g. username.company-us-east-1', arg: String}
+
+  end
+
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
     puts <<-EOP
 us-east-1
