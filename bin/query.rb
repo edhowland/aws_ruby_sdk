@@ -31,7 +31,7 @@ EOP
     puts 'Enumerating key pairs by name'
     @ec2.key_pairs.each do |key|
        puts key.key_name 
-    puts "\tfingerprint: #{key.key_fingerprint}"
+    # puts "\tfingerprint: #{key.key_fingerprint}"   # commented for safety reasons
     end
   end
 
