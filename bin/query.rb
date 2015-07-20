@@ -6,7 +6,12 @@ require './messages'
 require './requestor'
 
 # All methods names matching option long names go here.
+# E.g --list-groups : -> def list_groups
 class QueryRequestor < OptionDecorator
+  def initialize
+    super     # mandatory call super class initializer
+    @ec2 = ec2_resource
+  end
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
     puts <<-EOP
 us-east-1
@@ -17,7 +22,8 @@ EOP
 
 
   def list_keys # {description: 'List Key Pairs', short: 'k'}
-
+    puts 'Enumerating key pairs by name'
+    @ec2.key_pairs.each {|key| puts key.name }
   end
 
   def list_vpcs # {description: 'List Virtual Private Clouds', short: 'v'}
