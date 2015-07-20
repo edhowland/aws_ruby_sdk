@@ -14,6 +14,23 @@ us-west-1
 us-west-2
 EOP
   end
+
+
+  def list_keys # {description: 'List Key Pairs', short: 'k'}
+
+  end
+
+  def list_vpcs # {description: 'List Virtual Private Clouds', short: 'v'}
+  end
+
+  def list_groups # {description: 'List Security Groups', short: 'g'}
+  end
+
+  def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
+  end
+
+  def list_s3 # {description: 'List S3 Objects', short: 's'}
+  end
 end
 
 requestor = QueryRequestor.new
