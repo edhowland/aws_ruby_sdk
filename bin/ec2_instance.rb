@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # ec2_instance.rb - work with ec2 instance
 
+require 'pry'
 require_relative '../lib/application'
 require './messages'
 require './requestor'
@@ -14,7 +15,7 @@ class Ec2Requestor < OptionDecorator
   def initialize
     super
     @ec2 = ec2_resource
-    @ec2_options = {dry_run: true} # TODO: must be: = {}
+    @ec2_options = {} # {dry_run: true} # TODO: must be: = {}
   end
 
   def create_key name # {description: 'Create Key Pair', arg: String }
@@ -23,6 +24,7 @@ class Ec2Requestor < OptionDecorator
     puts "Creating Key Pair: #{keyname}"
     @ec2_options[:key_name] = keyname
     key_pair = @ec2.create_key_pair @ec2_options
+#pry
 
     keyfname = keyname + '_rsa'
   File.write(keyfname, '(Smack Stuff)')
@@ -30,7 +32,12 @@ class Ec2Requestor < OptionDecorator
   end
 
   def delete_key name # {description: 'Delete Key Pair', arg: String }
-    puts "Deleting Key Pair : #{name}"
+    check_key_name_syntax name
+  
+    keyname = key_name name
+    puts "Deleting Key Pair : #{keyname}"
+    @ec2_options[:key_name] = keyname
+    @ec2.delete_key_pair @ec2_options
   end
 
 
