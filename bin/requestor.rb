@@ -8,6 +8,7 @@ def check_and_execute requestor
 begin
       requestor.execute!
 rescue => err
+      puts "Request raised an Error: #{err.class.name}"
   puts err.message
 end
   end
