@@ -65,6 +65,28 @@ EOP
   end
 
   def list_s3 # {description: 'List S3 Objects', short: 's'}
+    puts 'Acquiring S3 Rsources'
+
+    s3 = s3_resource
+
+    puts 'Enumerating Buckets'
+    buckets = s3.buckets
+    bucket_count = 0
+    begin
+      buckets.each do |bucket|
+        bucket_count += 1
+        puts "Found bucket: #{bucket.name}"
+        puts "Bucket region: #{bucket.url}"
+        puts 'Enumerating objects in buckett'
+       bucket.objects.each {|obj| puts obj.key }
+
+      end
+    rescue => err
+      puts "Enumerating S3 Buckets raised an error:"
+      puts err.message
+    end
+
+    puts "found #{bucket_count} S3 Buckets"
   end
 end
 
