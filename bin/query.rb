@@ -27,6 +27,13 @@ EOP
   end
 
   def list_vpcs # {description: 'List Virtual Private Clouds', short: 'v'}
+    puts 'List of Virtual Private Clouds'
+    @ec2.vpcs.each do |vpc|
+      puts "vpc.id: #{vpc.id}"
+    puts"\tvpc.is_default:: #{vpc.is_default.to_s}"
+    puts "\tvpc.state: #{vpc.state}"
+    puts
+    end
   end
 
   def list_groups # {description: 'List Security Groups', short: 'g'}
