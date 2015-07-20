@@ -73,8 +73,14 @@ describe MultiCut do
 
 end
 
+$result = ''
 class MixedCut < OptionDecorator
+  def initialize
+    super
+  end
+
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
+    $result = 'us-west-1'
 'us-west-1'
   end    
 
@@ -133,7 +139,7 @@ describe MixedCut do
       options {|opts| @mx.set_options opts }
     end
 
-    specify {skip(); @mx.execute!.must_equal 'us-west-1' }
+    specify { @mx.execute!; $result.must_equal 'us-west-1' }
   end
 
   describe 'option_list' do
