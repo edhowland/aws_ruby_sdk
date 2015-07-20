@@ -1,5 +1,5 @@
 # option_decorator.rb - class OptionDecorator
-class OptionDecorator < HandlerFramework
+class OptionDecorator 
   def _end; end # need this to signal end of sublass method list
 
   def initialize
@@ -8,6 +8,12 @@ class OptionDecorator < HandlerFramework
   end
 
   attr_reader :options
+  attr_reader :exec_list
+
+  def handlers
+    idx = self.class.instance_methods.index(:_end)
+    self.class.instance_methods[0..(idx - 1)]
+  end
 
   def eval_source source_and_line 
     line = read_line *source_and_line
