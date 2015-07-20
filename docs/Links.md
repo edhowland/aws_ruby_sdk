@@ -4,3 +4,4 @@
 
 [Developer Guide](http://docs.aws.amazon.com/sdkforruby/api/index.html)
 [API Documentation](http://docs.aws.amazon.com/sdkforruby/api/index.html)
+[Key Oair](http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/KeyPair.html)

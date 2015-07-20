@@ -25,6 +25,7 @@ EOP
     puts 'Enumerating key pairs by name'
     @ec2.key_pairs.each do |key|
        puts key.name 
+    puts "\tfingerprint: #{key.key_fingerprint}"
     end
   end
 
