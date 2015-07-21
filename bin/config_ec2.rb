@@ -23,6 +23,14 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:key_name] = name
   end
 
+  def type name # {description: 'Set Instance Type: E.g. t1.micro', arg: String}
+    @ec2_config.options[:instance_type] = name
+  end
+
+  def image name # { description: 'Set AMI Image', arg: String }
+    @ec2_config.options[:image_name] = name
+  end
+
   def display # {description: 'Display currently set EC2 options' }
     puts "Currently set options in #{@ec2_config.fname}"
     p @ec2_config.options
