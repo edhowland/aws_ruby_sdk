@@ -22,6 +22,11 @@ class ConfigRequestor < OptionDecorator
   def key_pair name # {description: 'Set Key Pair name', arg: String}
     @ec2_config.options[:key_name] = name
   end
+
+  def display # {description: 'Display currently set EC2 options' }
+    puts "Currently set options in #{@ec2_config.fname}"
+    p @ec2_config.options
+  end
 end
 
 
