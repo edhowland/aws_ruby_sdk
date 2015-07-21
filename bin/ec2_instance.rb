@@ -24,13 +24,7 @@ class Ec2Requestor < OptionDecorator
     puts "Creating Key Pair: #{keyname}"
     @ec2_options[:key_name] = keyname
     key_pair = @ec2.create_key_pair @ec2_options
-  private_key = key_pair.private_key
-puts 'Inspecting returned key_pair'
-puts private_key.inspect
-
-    keyfname = keyname + '_rsa'
-  File.write(keyfname, '(Smack Stuff)')
-    puts "Wrote private key to: #{keyfname}"
+    puts "Key Pair created. Fingerprint: #{key_pair.key_fingerprint}"
   end
 
   def delete_key name # {description: 'Delete Key Pair', arg: String }
@@ -44,8 +38,6 @@ puts private_key.inspect
     raise RuntimeError.new("No key found matching: #{keyname}") if key_pair.nil?
     key_pair.delete
     puts "Key Pair #{keyname} deleted."
-    keyfname = keyname + '_rsa'
-    puts "You may want to delete the file: #{keyfname}"
   end
 
 
