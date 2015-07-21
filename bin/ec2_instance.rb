@@ -24,7 +24,9 @@ class Ec2Requestor < OptionDecorator
     puts "Creating Key Pair: #{keyname}"
     @ec2_options[:key_name] = keyname
     key_pair = @ec2.create_key_pair @ec2_options
-#pry
+  private_key = key_pair.private_key
+puts 'Inspecting returned key_pair'
+puts private_key.inspect
 
     keyfname = keyname + '_rsa'
   File.write(keyfname, '(Smack Stuff)')
