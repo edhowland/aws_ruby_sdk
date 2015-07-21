@@ -20,7 +20,7 @@ class ConfigRequestor < OptionDecorator
   end
 
   def key_pair name # {description: 'Set Key Pair name', arg: String}
-    @ec2_options[:key_name] = name
+    @ec2_options.options[:key_name] = name
   end
 end
 
