@@ -2,7 +2,7 @@
 class OptionDecorator 
   def _end; end # need this to signal end of sublass method list
 
-  def initialize
+  def initialize *args
     @options = expand_options
     @exec_list = []
   end
