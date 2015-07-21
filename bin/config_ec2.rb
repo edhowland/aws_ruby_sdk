@@ -39,6 +39,10 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:max_count] = count
   end
 
+  def security_groups name # { description: 'Set security group', short: 'g', arg: String}
+    @ec2_config.options[:security_groups] = [name]
+  end
+
   def display # {description: 'Display currently set EC2 options' }
     puts "Currently set options in #{@ec2_config.fname}"
     p @ec2_config.options
