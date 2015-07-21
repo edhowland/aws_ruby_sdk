@@ -14,3 +14,12 @@ class ConfigRequestor < OptionDecorator
 end
 
 requestor = ConfigRequestor.new
+
+
+options('Configure EC2 Instance Operations') do |opts|
+  requestor.set_options opts
+end
+
+check_and_execute requestor
+
+
