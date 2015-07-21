@@ -66,6 +66,7 @@ EOP
         puts 'Instance of EC2'
         instance_count += 1
         puts "Instance ID: #{instance.id}"
+  puts "\tInstance image: #{instance.image.id}"
       end
     rescue => err
       puts "Enumerating EC2 instances raised error:"
