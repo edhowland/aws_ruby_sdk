@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # ec2_instance.rb - work with ec2 instance
 
-require 'pry'
 require_relative '../lib/application'
+require 'json'
+require_relative 'ec2_options'
 require './messages'
 require './requestor'
 
@@ -12,10 +13,11 @@ def check_key_name_syntax keyname
 end
 
 class Ec2Requestor < OptionDecorator
-  def initialize
+  def initialize ec2_config
     super
     @ec2 = ec2_resource
     @ec2_options = {} # {dry_run: true} # TODO: must be: = {}
+    @ec2_config = ec2_config
   end
 
   def create_key name # {description: 'Create Key Pair', arg: String }
@@ -43,7 +45,8 @@ class Ec2Requestor < OptionDecorator
 
 end
 
-requestor = Ec2Requestor.new
+ec2_config = Ec2Options.load 'ec2_default.json'
+requestor = Ec2Requestor.new ec2_config
 
 
 options('EC2 Instance Operations') do |opts|
