@@ -42,7 +42,14 @@ class Ec2Requestor < OptionDecorator
     puts "Key Pair #{keyname} deleted."
   end
 
+  def new_ec2 # { description: 'Create a new EC2 Instance', }
+    puts 'Using options:'
+    p @ec2_config.options
 
+    instances = @ec2.create_instances @ec2_config.options
+    puts "EC2 Instance ID: #{instances.first.id}"
+
+  end
 end
 
 ec2_config = Ec2Options.load 'ec2_default.json'

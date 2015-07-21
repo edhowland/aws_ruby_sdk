@@ -10,7 +10,10 @@ class Ec2Options
 
   def self.load fname
     options = JSON.load(File.read(fname))
-    self.new fname, options
+    # convert string keys to symbols
+    symbol_options = {}
+    options.each_pair.each {|key, value| symbol_options[key.to_sym] = value } 
+    self.new fname, symbol_options
   end
 
   def save

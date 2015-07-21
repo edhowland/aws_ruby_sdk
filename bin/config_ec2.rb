@@ -27,8 +27,8 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:instance_type] = name
   end
 
-  def image name # { description: 'Set AMI Image', arg: String }
-    @ec2_config.options[:image_name] = name
+  def image name # { description: 'Set AMI Image ID', arg: String }
+    @ec2_config.options[:image_id] = name
   end
 
   def min_count count # { description: 'Set minimun count of instances', arg: Integer }
