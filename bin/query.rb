@@ -51,6 +51,8 @@ EOP
     puts 'List Security Groups'
     @ec2.security_groups.each do |group|
       puts "group.id: #{group.id}"
+      puts "\tgroup_id: #{group.group_id}"
+      puts "\tgroup name: #{group.group_name}"
       puts "\tgroup.description: #{group.description}"
       puts
     end
