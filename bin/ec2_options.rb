@@ -6,6 +6,8 @@ class Ec2Options
     @options = options
   end
 
+  attr_accessor :fname, :options
+
   def self.load fname
     options = JSON.load(File.read(fname))
     self.new fname, options
