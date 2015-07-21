@@ -36,8 +36,14 @@ class Ec2Requestor < OptionDecorator
   
     keyname = key_name name
     puts "Deleting Key Pair : #{keyname}"
-    @ec2_options[:key_name] = keyname
-    @ec2.delete_key_pair @ec2_options
+    @ec2_options[:key_names] = [keyname]
+    key_pairs = @ec2.key_pairs @ec2_options
+    key_pair = key_pairs.first
+    raise RuntimeError.new("No key found matching: #{keyname}") if key_pair.nil?
+    key_pair.delete
+    puts "Key Pair #{keyname} deleted."
+    keyfname = keyname + '_rsa'
+    puts "You may want to delete the file: #{keyfname}"
   end
 
 
