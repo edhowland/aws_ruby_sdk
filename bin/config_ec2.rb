@@ -35,6 +35,10 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:min_count] = count
   end
 
+  def max_count count # { description: 'Set maximum instance count', short: 'x', arg: Integer }
+    @ec2_config.options[:max_count] = count
+  end
+
   def display # {description: 'Display currently set EC2 options' }
     puts "Currently set options in #{@ec2_config.fname}"
     p @ec2_config.options
