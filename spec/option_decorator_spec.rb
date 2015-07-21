@@ -6,6 +6,7 @@ require 'minitest/mock'
 require 'minitest/autorun'
 
 
+# TODO: bug when no options exist in subclass
 # code Under Test
 # methods MUST be decorated with preceeding comment containing valid Ruby Hash
 class Cut < OptionDecorator

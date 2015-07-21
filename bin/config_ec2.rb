@@ -10,6 +10,8 @@ def formate_fname name
 end
 
 class ConfigRequestor < OptionDecorator
+  def file name # {description: 'File name to create or read', arg: String}
+  end
 
 end
 
