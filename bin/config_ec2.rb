@@ -31,6 +31,10 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:image_name] = name
   end
 
+  def min_count count # { description: 'Set minimun count of instances', arg: Integer }
+    @ec2_config.options[:min_count] = count
+  end
+
   def display # {description: 'Display currently set EC2 options' }
     puts "Currently set options in #{@ec2_config.fname}"
     p @ec2_config.options
