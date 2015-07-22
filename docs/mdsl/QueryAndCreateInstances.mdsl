@@ -1,0 +1,7 @@
+h1 'Query and Creating an EC2 Instance'
+
+h2 'Programs to use'
+
+bullets 'bin/query.rb - Query things in AWS',
+  'bin/configure_ec2.rb - Configure EC2 Instance beforecreating one',
+  'bin/ec2_instance.rb - create new EC2 Instance'
