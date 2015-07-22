@@ -13,3 +13,43 @@ To do so, you need to create the file: ec2_default.json, which a JSON file
 that contains the parameters that describe the new instance.
 You can create this file with the program: configure_ec2.rb.
 EOP
+
+
+h3 'Options'
+
+para <<-EOP
+All three programs are communicated with via command line options.
+They all respond to '-h or --help' so you can see which options
+they individually take. E.g. to see which U. S. Regions are available:
+EOP
+
+code <<-EOC
+$ cd bin
+$ ./query.rb --list-regions
+Valid U. S. Region handles:
+
+us-east-1
+us-west-1
+us-west-2
+EOC
+
+h4 'Common options'
+
+bullets '--region region              Override Region [us-east-1] operates in',
+'-l, --list-options               Display currently set options'
+
+para <<-EOP
+The '--region' option allows you to override the currently set region
+set in ~/.aws/region.rb
+The '-l' options reports on commonly set parameters such as:
+the currently set region and the host access key.
+EOP
+
+
+h2 'query.rb'
+
+para <<-EOP
+The query.rb program only queries various resources your account have access to, such as:
+key pairs, virtual private clouds, security groups, S3 objects and Ec2 instances.
+You can list everything with the '-a' or '--list-a' options.
+EOP
