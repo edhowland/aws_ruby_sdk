@@ -1,29 +1,26 @@
-h1 'Query and Creating an EC2 Instance'
+# Query and Creating an EC2 Instance
 
-h2 'Programs to use'
+## Programs to use
 
-bullets 'bin/query.rb - Query things in AWS',
-  'bin/configure_ec2.rb - Configure EC2 Instance beforecreating one',
-  'bin/ec2_instance.rb - create new EC2 Instance'
+- bin/query.rb - Query things in AWS
+- bin/configure_ec2.rb - Configure EC2 Instance beforecreating one
+- bin/ec2_instance.rb - create new EC2 Instance
 
-para <<-EOP
 You use these programs to interact with your AWS account.
 You can query resources with query.rb. Your can create and delete ssh key pairs and create a new EC2 instance with ec2_instance.rb.
 To do so, you need to create the file: ec2_default.json, which a JSON file
 that contains the parameters that describe the new instance.
 You can create this file with the program: configure_ec2.rb.
-EOP
 
 
-h3 'Options'
+### Options
 
-para <<-EOP
 All three programs are communicated with via command line options.
 They all respond to '-h or --help' so you can see which options
 they individually take. E.g. to see which U. S. Regions are available:
-EOP
 
-code <<-EOC
+
+```
 $ cd bin
 $ ./query.rb --list-regions
 Valid U. S. Region handles:
@@ -31,38 +28,35 @@ Valid U. S. Region handles:
 us-east-1
 us-west-1
 us-west-2
-EOC
 
-h4 'Common options'
+```
 
-bullets '--region region              Override Region [us-east-1] operates in',
-'-l, --list-options               Display currently set options'
+#### Common options
 
-para <<-EOP
+- --region region              Override Region [us-east-1] operates in
+- -l, --list-options               Display currently set options
+
 The '--region' option allows you to override the currently set region
 set in ~/.aws/region.rb
 The '-l' options reports on commonly set parameters such as:
 the currently set region and the host access key.
-EOP
 
 
-h2 'query.rb'
+## query.rb
 
-para <<-EOP
 The query.rb program only queries various resources your account have access to, such as:
 key pairs, virtual private clouds, security groups, S3 objects and Ec2 instances.
 You can list everything with the '-a' or '--list-a' options.
-EOP
 
-h2 'configure_ec2.rb'
 
-para  <<-EOP
+## configure_ec2.rb
+
 The configure_ec2.rb program sets parameters in the 'ec2_default.json' JSON file.
 Each parameter is set via a command line option and multiple options can be
 be set at the same time. To see a list of the currently set options use the '-d or --display' option.
-EOP
 
-code <<-EOC
+
+```
 
         --region region              Override Region [us-east-1] operates in
     -l, --list-options               Display currently set options
@@ -76,25 +70,24 @@ code <<-EOC
     -x, --max-count name             Set maximum instance count
     -g, --security-groups name       Set security group
     -d, --display                    Display currently set EC2 options
-EOC
 
-h3 '--dry-run'
+```
 
-para <<-EOP
+### --dry-run
+
 You can set the dry_run: parameter for the ec2_instance.rb program. Setting this parameter will
 not set or create anything in your AWS account. It will check
 to see if all your parameters are set to sensible values
 and that you have enough of them set.
-EOP
-
-h2 'ec2_instance.rb'
 
 
-para <<-EOP
+## ec2_instance.rb
+
 You can create and delete key pairs with the --create-key and --delete-key options. Each of these require a name of the key pair.
-EOP
-para <<-EOP
+
+
 You can create a new EC2 instance with the -n or --new option.
 It uses the file: ec2_default.json file. This file can be created
 with the configure_ec2.rb program
-EOP
+
+
