@@ -52,3 +52,9 @@ pub_key.chomp!
 parts = pub_key.split ' '
 die 'Invalid public key format' unless parts.length == 3
 
+base64_data = parts[1]
+ec2_options[:data] = base64_data
+
+ec2 = ec2_resource
+
+
