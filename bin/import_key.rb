@@ -8,7 +8,6 @@ require_relative 'requestor'
 class ImportRequestor < OptionDecorator
   def initialize ec2_options, options
     super
-puts 'in initialize'
     @ec2_options = ec2_options
     @my_options = options
   end
@@ -43,7 +42,7 @@ end
 
 check_and_execute requestor
 
-#die 'Missing missing parameter: --name' unless @ec2_options[:key_name]
-#die 'Missing parameter: --name' unless @my_options[:file]
+die 'Missing missing parameter: --name' unless ec2_options[:key_name]
+die 'Missing parameter: --name' unless my_options[:file]
 
 
