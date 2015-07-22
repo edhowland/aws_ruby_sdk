@@ -51,7 +51,12 @@ class ConfigRequestor < OptionDecorator
 end
 
 
-ec2_options = Ec2Options.load format_fname('default')
+ec2_fname = format_fname 'default'
+unless File.exists? ec2_fname
+
+end
+
+ec2_options = Ec2Options.load ec2_fname
 requestor = ConfigRequestor.new ec2_options
 
 
