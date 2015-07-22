@@ -16,7 +16,11 @@ class ConfigRequestor < OptionDecorator
     super
     @ec2_config = ec2_config
   end
-  def file name # {description: 'File name to create or read', arg: String}
+#  def file name # {description: 'File name to create or read', arg: String}
+#  end
+
+  def dry_run # {description: 'Set dry_run parameter', short: 'y' }
+    @ec2_config.options[:dry_run] = true
   end
 
   def key_pair name # {description: 'Set Key Pair name', arg: String}
