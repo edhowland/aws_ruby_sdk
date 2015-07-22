@@ -5,3 +5,11 @@ h2 'Programs to use'
 bullets 'bin/query.rb - Query things in AWS',
   'bin/configure_ec2.rb - Configure EC2 Instance beforecreating one',
   'bin/ec2_instance.rb - create new EC2 Instance'
+
+para <<-EOP
+You use these programs to interact with your AWS account.
+You can query resources with query.rb. Your can create and delete ssh key pairs and create a new EC2 instance with ec2_instance.rb.
+To do so, you need to create the file: ec2_default.json, which a JSON file
+that contains the parameters that describe the new instance.
+You can create this file with the program: configure_ec2.rb.
+EOP
