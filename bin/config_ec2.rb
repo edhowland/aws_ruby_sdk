@@ -23,6 +23,10 @@ class ConfigRequestor < OptionDecorator
     @ec2_config.options[:dry_run] = true
   end
 
+  def no_dryrun # { description: 'Unset dry_run parameter' }
+    @ec2_config.options.delete :dry_run
+  end
+
   def key_pair name # {description: 'Set Key Pair name', arg: String}
     @ec2_config.options[:key_name] = name
   end
