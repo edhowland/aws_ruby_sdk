@@ -53,3 +53,15 @@ The query.rb program only queries various resources your account have access to,
 key pairs, virtual private clouds, security groups, S3 objects and Ec2 instances.
 You can list everything with the '-a' or '--list-a' options.
 EOP
+
+h2 'configure_ec2.rb'
+
+para  <<-EOP
+The configure_ec2.rb program sets parameters in the 'ec2_default.json' JSON file.
+Each parameter is set via a command line option and multiple options can be
+be set at the same time. To see a list of the currently set options use the '-d or --display' option.
+EOP
+
+code <<-EOC
+
+EOC

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # config_ec2.rb - create ec2_XXX.json file
 
+require 'fileutils'
 require 'json'
 require_relative '../lib/application'
 require_relative 'ec2_options'
