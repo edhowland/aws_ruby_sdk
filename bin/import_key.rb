@@ -45,4 +45,10 @@ check_and_execute requestor
 die 'Missing missing parameter: --name' unless ec2_options[:key_name]
 die 'Missing parameter: --name' unless my_options[:file]
 
+die "No such file: #{my_options[:file]}" unless File.exists? my_options[:file]
+
+pub_key = File.read my_options[:file]
+pub_key.chomp!
+parts = pub_key.split ' '
+die 'Invalid public key format' unless parts.length == 3
 
