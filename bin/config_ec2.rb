@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # config_ec2.rb - create ec2_XXX.json file
 
-require 'fileutils'
 require 'json'
 require_relative '../lib/application'
 require_relative 'ec2_options'
@@ -52,9 +51,8 @@ end
 
 
 ec2_fname = format_fname 'default'
-unless File.exists? ec2_fname
+File.write(ec2_fname, {}.to_json)unless File.exists? ec2_fname
 
-end
 
 ec2_options = Ec2Options.load ec2_fname
 requestor = ConfigRequestor.new ec2_options
