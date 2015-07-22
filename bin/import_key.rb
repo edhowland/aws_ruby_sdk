@@ -8,8 +8,9 @@ require_relative 'requestor'
 class ImportRequestor < OptionDecorator
   def initialize ec2_options, options
     super
+puts 'in initialize'
     @ec2_options = ec2_options
-    @options = options
+    @my_options = options
   end
 
   def dry_run # { description: 'Dry run. Does not the public key, but checks parameters are ok', short: 'y' }
@@ -22,7 +23,7 @@ class ImportRequestor < OptionDecorator
   end
 
   def file name # { description: 'Filename of the public key', arg: String }
-    @options[:file] = name
+    @my_options[:file] = name
   end
 end
 
@@ -36,7 +37,7 @@ my_options = {}
 requestor = ImportRequestor.new ec2_options, my_options
 
 
-options do |opts|
+options('Import Publick Key') do |opts|
   requestor.set_options opts
 end
 
