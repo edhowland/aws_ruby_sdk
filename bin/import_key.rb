@@ -4,11 +4,23 @@
 require_relative '../lib/application'
 
 class ImportRequestor < OptionDecorator
-  def name # { description: 'Name of the key pair' }
-
+  def initialize ec2_options, options
+    super
+    @ec2_options = ec2_options
+    @options = options
   end
 
-  def file # { description: 'Filename of the public key' }
+  def dry_run #  { description: 'Dry run. Does not the public key, but checks parameters are ok', short: 'y' }
+
+    @ec2_options[:dry_run] = true
+  end
+
+  def name name # { description: 'Name of the key pair', arg: String }
+    @ec2_options[:key_name] = name
+  end
+
+  def file name # { description: 'Filename of the public key', arg: String }
+    @options[:file] = name
   end
 
 end
