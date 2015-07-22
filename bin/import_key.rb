@@ -53,8 +53,15 @@ parts = pub_key.split ' '
 die 'Invalid public key format' unless parts.length == 3
 
 base64_data = parts[1]
-ec2_options[:data] = base64_data
+ec2_options[:public_key_material] = base64_data
 
-ec2 = ec2_resource
+begin
+  ec2 = ec2_resource
+  key_pair = ec2.import_key_pair ec2_options
+rescue => err
+    puts 'Import public key raised an error'
+  puts err.message
+end
+p key_pair
 
 
