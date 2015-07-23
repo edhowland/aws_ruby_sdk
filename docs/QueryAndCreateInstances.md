@@ -3,6 +3,7 @@
 ## Programs to use
 
 - bin/query.rb - Query things in AWS
+- bin/import_key.rb - import ssh public key file
 - bin/configure_ec2.rb - Configure EC2 Instance beforecreating one
 - bin/ec2_instance.rb - create new EC2 Instance
 
@@ -47,6 +48,36 @@ the currently set region and the host access key.
 The query.rb program only queries various resources your account have access to, such as:
 key pairs, virtual private clouds, security groups, S3 objects and Ec2 instances.
 You can list everything with the '-a' or '--list-a' options.
+
+
+## import_key.rb
+
+To create a key oair,  you can use a third-party SSH key generator and then use the program to import it to AWS.
+For example, using openssh 'ssh-keygen':
+
+
+```
+$ 
+
+Enter file in which to save the key (/home/vagrant/.ssh/id_rsa): username.company
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in username.commpany.
+Your public key has been saved in username.commpany.pub.
+The key fingerprint is:
+06:68:bf:56:26:56:d9:0e:f5:ad:22:1c:ba:75:94:18 vagrant@vagrant-ubuntu-trusty-64
+The key's randomart image is:
++--[ RSA 2048]----+
+|      +          |
+#( and more ASCII art)
++-----------------+
+$ ./import_key.rb -n username.company -f ./username.company.pub
+
+```
+
+Once you have created the key pairs, and imported the public key, 
+you can use query.rb -k to see if it exists.
+You can also use ec2_instance.rb -d username.company to delete it.
 
 
 ## configure_ec2.rb
