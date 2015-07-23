@@ -48,9 +48,7 @@ die 'Missing parameter: --name' unless my_options[:file]
 die "No such file: #{my_options[:file]}" unless File.exists? my_options[:file]
 
 public_key = File.read my_options[:file]
-#die 'Invalid public key format' unless parts.length == 3
 
-#base64_data = parts[1]
 ec2_options[:public_key_material] = public_key
 
 begin
@@ -58,8 +56,8 @@ begin
   key_pair = ec2.import_key_pair ec2_options
 rescue => err
     puts 'Import public key raised an error'
+  puts err.class.name
   puts err.message
 end
-p key_pair
-
+ puts "Key Pair generated. Fingerprint: #{key_pair.key_fingerprint}" unless key_pair.nil?
 
