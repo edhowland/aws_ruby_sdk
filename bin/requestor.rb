@@ -10,6 +10,7 @@ begin
 rescue => err
       puts "Request raised an Error: #{err.class.name}"
   puts err.message
+  0.upto(3) {|i| puts err.backtrace[i] }
 end
   end
 end

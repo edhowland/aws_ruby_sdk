@@ -30,9 +30,7 @@ class Ec2Requestor < OptionDecorator
   end
 
   def delete_key name # {description: 'Delete Key Pair', arg: String }
-    #check_key_name_syntax name
-  
-    keyname = key_name name
+    keyname = name 
     puts "Deleting Key Pair : #{keyname}"
     @ec2_options[:key_names] = [keyname]
     key_pairs = @ec2.key_pairs @ec2_options
