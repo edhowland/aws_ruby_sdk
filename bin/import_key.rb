@@ -47,13 +47,11 @@ die 'Missing parameter: --name' unless my_options[:file]
 
 die "No such file: #{my_options[:file]}" unless File.exists? my_options[:file]
 
-pub_key = File.read my_options[:file]
-pub_key.chomp!
-parts = pub_key.split ' '
-die 'Invalid public key format' unless parts.length == 3
+public_key = File.read my_options[:file]
+#die 'Invalid public key format' unless parts.length == 3
 
-base64_data = parts[1]
-ec2_options[:public_key_material] = base64_data
+#base64_data = parts[1]
+ec2_options[:public_key_material] = public_key
 
 begin
   ec2 = ec2_resource
