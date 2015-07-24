@@ -14,9 +14,6 @@ class QueryRequestor < OptionDecorator
   end
 
 
-    def format_keyname name # {description: 'Format Key Name: E.g. username.company', arg: String}
-    puts key_name name
-  end
 
   def list_regions # {description: 'List U. S. Regions', short: 'r'}
     puts <<-EOP
