@@ -70,8 +70,9 @@ EOP
     end
   end
 
-  def describe_ec2 # { description: 'Describe EC2 Instances', short: 'b' }
-  #  puts @ec2.describe_instances
+  def describe_ec2 id # { description: 'Describe EC2 Instance', short: 'i', arg: String }
+    instance = @ec2.instance id
+    describe_instance instance
   end
 
   def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
