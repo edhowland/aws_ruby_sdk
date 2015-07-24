@@ -55,6 +55,10 @@ EOP
     end
   end
 
+  def describe_ec2 # { description: 'Describe EC2 Instances', short: 'b' }
+  #  puts @ec2.describe_instances
+  end
+
   def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
     puts 'Enumerating EC2 Instances'
     puts 'This could take some few minutes.'
@@ -66,6 +70,14 @@ EOP
         instance_count += 1
         puts "Instance ID: #{instance.id}"
   puts "\tInstance image: #{instance.image.id}"
+    puts "\tType: #{instance.instance_type}"
+    puts "\tKey Pair: #{instance.key_pair.key_name}"
+    puts "\tPrivate IP Address: #{instance.private_ip_address}"
+   puts "\tPublic IP: #{instance.public_ip_address}"
+    puts "\tVPC ID: #{instance.vpc_id}"
+    puts "\tPublic DNS: #{instance.public_dns_name}"
+    puts "\tState of the instance: #{instance.state.name}"
+    puts "\tState Reason: #{instance.state_reason.message}"
       end
     rescue => err
       puts "Enumerating EC2 instances raised error:"
