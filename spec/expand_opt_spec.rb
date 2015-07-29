@@ -14,10 +14,12 @@ describe 'expand_short' do
   let(:oarg) { expand_short :option, {arg: String} }
   let(:arg_over) { expand_short :option, {short: 'p', arg: String} }
   let(:noshort) { expand_short :option, {short: :nop} }
+  let(:noshort_arg) { expand_short :option, {short: :nop, arg: String} }
 
   specify { opt.must_equal '-o' }
   specify { override.must_equal '-p' }
   specify { oarg.must_equal '-o name' }
   specify { arg_over.must_equal '-p name' }
   specify { noshort.must_be_nil }
+  specify { noshort_arg.must_be_nil }
 end
