@@ -1,0 +1,18 @@
+# Rakefile for MDSL to MD files
+
+# execute the mdgen Ruby script from the bungaku in bin/
+def bungaku source, dest
+  sh "bungaku #{source} > #{dest}"
+end
+
+mdsl_files = FileList['*.mdsl']
+
+task :default => [:md]
+task :md => mdsl_files.ext('.md')
+
+rule '.md' => '.mdsl' do |t|
+  bungaku t.source, t.name
+  mv t.name, '..'
+end
+
+
