@@ -34,7 +34,9 @@ describe 'expand_long' do
   let(:o) { Cut.new }
   let(:long) { o.expand_long :long_option }
   let(:over) { o.expand_long :long_option, {long: 'other-option'} }
+  let(:nop) { o.expand_long :long_option, {long: :nop} }
 
   specify { long.must_equal '--long-option' }
   specify { over.must_equal '--other-option' }
+  specify { nop.must_be_nil }
 end
