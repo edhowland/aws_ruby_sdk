@@ -38,11 +38,24 @@ describe OptionDecorator do
 
   end
 
+class MyNoShort < OptionDecorator
+  def no_something # {description: 'do nothing', short: nil}
+  end
+end
   describe 'args_to_opts_args' do
+    let(:myo) { MyNoShort.new }
     before { @this = opd }
-    subject { @this.args_to_opts_args @this.options_args }
+    describe 'simple' do
+      subject { @this.args_to_opts_args @this.options_args }
 
-    specify { subject.must_equal ['-l', '--list-things', 'List Things'] }
+      specify { subject.must_equal ['-l', '--list-things', 'List Things'] }
+    end
+
+    describe 'with missing short' do
+      subject { m=myo; m.args_to_opts_args [[:no_something, nil, '--no-something-thing', 'do nothing']] }
+
+      specify { subject.must_equal ['--no-something', 'do nothing'] }
+    end
   end
 end
 
@@ -61,6 +74,17 @@ describe MultiCut do
     specify { mcut.decorators.must_equal @h }
   end
 
+  describe 'expand_short' do
+    subject { mcut.expand_short 'o', {} }
+
+    specify { subject.must_equal '-o' }
+  end
+
+  describe 'expand_short with arg' do
+    subject { mcut.expand_short 'k', {arg: String} }
+
+    specify { subject.must_equal '-k name' }
+  end
   describe 'expand_options' do
     before do
       @h = {

@@ -27,6 +27,11 @@ class OptionDecorator
   def decorators
     method_list.reduce({}) {|i,  m| i[m.name] = eval_source(m.source_location); i }
   end
+  def expand_short short, options
+    short = "-#{short}"
+      short += ' name' unless options[:arg].nil?
+    short
+  end
 
   def expand_options
       decorations = decorators
@@ -60,9 +65,9 @@ class OptionDecorator
   def args_to_opts_args args
     this_args = args[0]
       this_opt = @options[this_args[0]]
-#binding.pry
       on_args = []
       on_args << this_args[1] if this_opt[:short]
+ #binding.pry
       on_args << this_args[2]
       on_args << this_opt[:arg]  if this_opt[:arg]
       on_args << this_args[3]
