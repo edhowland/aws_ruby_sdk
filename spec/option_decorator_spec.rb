@@ -39,7 +39,8 @@ describe OptionDecorator do
   end
 
   describe 'args_to_opts_args' do
-    subject { c=opd; c.args_to_opts_args c.options_args }
+    before { @this = opd }
+    subject { @this.args_to_opts_args @this.options_args }
 
     specify { subject.must_equal ['-l', '--list-things', 'List Things'] }
   end
