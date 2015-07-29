@@ -107,6 +107,20 @@ describe MixedCut do
     end
   end
 
+class NoShort < OptionDecorator
+  def no_something # {description: 'do nothing', short: nil}
+  end
+end
+
+describe 'no short option' do
+  let(:noshort) { NoShort.new }
+  before { @mock = MiniTest::Mock.new; @mock.expect(:on, nil, ['--no-something', 'do nothing'])} 
+
+  specify { noshort.set_options @mock; @mock.verify }
+end
+
+
+
 
   describe 'exec_list' do
     before do
