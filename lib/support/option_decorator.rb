@@ -40,7 +40,7 @@ class OptionDecorator
       long = chain_case key.to_s
       long = "--#{long}"
       long += ' name' unless options[:arg].nil?
-      short = options[:short] || key.to_s[0]
+      short = expand_short(options[:short] || key.to_s[0], options)
       short = "-#{short}"
       short += ' name' unless options[:arg].nil?
 
