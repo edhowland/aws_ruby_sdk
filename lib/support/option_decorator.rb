@@ -57,8 +57,23 @@ class OptionDecorator
     end
   end
 
+  def args_to_opts_args args
+    this_args = args[0]
+      this_opt = @options[this_args[0]]
+#binding.pry
+      on_args = []
+      on_args << this_args[1] if this_opt[:short]
+      on_args << this_args[2]
+      on_args << this_opt[:arg]  if this_opt[:arg]
+      on_args << this_args[3]
+
+  on_args
+  end
   def set_options opts
     options_args.each do |arg|
+      #opts.on *on_args
+
+      
       if @options[arg[0]][:arg].nil?
        opts.on(*arg[1..-1]) { @exec_list << [arg[0]] }
       else
