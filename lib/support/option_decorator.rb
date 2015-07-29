@@ -34,7 +34,7 @@ def expand_short key, options={}
 end
 
   def expand_long key, options={}
-    "--#{chain_case(key.to_s)}"
+    '--' + (options[:long] || "#{chain_case(key.to_s)}")
   end
 
   def expand_options
