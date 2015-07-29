@@ -27,11 +27,11 @@ class OptionDecorator
   def decorators
     method_list.reduce({}) {|i,  m| i[m.name] = eval_source(m.source_location); i }
   end
-  def expand_short short, options
-    short = "-#{short}"
-      short += ' name' unless options[:arg].nil?
-    short
-  end
+
+  # expand_short :option_key, {short: 'p'} - translates option symbol to short opt, w/ overrides and arg
+def expand_short key, options={}
+  (options[:short] == :nop ? nil : ('-' + (options[:short] || key.to_s[0]) + (options[:arg] ? ' name' : '')))
+end
 
   def expand_options
       decorations = decorators
