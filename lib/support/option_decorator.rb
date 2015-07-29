@@ -33,6 +33,10 @@ def expand_short key, options={}
   (options[:short] == :nop ? nil : ('-' + (options[:short] || key.to_s[0]) + (options[:arg] ? ' name' : '')))
 end
 
+  def expand_long key, options={}
+    "--#{chain_case(key.to_s)}"
+  end
+
   def expand_options
       decorations = decorators
     decorators.keys.each do |key|

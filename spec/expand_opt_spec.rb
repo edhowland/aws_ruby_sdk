@@ -29,3 +29,10 @@ describe 'expand_short' do
   specify { noshort.must_be_nil }
   specify { noshort_arg.must_be_nil }
 end
+
+describe 'expand_long' do
+  let(:o) { Cut.new }
+  let(:long) { o.expand_long :long_option }
+
+  specify { long.must_equal '--long-option' }
+end
