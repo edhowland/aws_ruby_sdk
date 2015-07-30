@@ -69,15 +69,24 @@ end
     args_a
   end
 
+# return opcode given key (method key), options, arg
+def exec_object key, options, arg
+    opcode = [key]
+    opcode << arg if options[:arg]
+    opcode
+end
 
   # set options in OptionParser opts object
   def set_options opts
     @options.keys.each do |key|
-        opts.on(*on_args(@options[key]))
+        opts.on(*on_args(@options[key])) do |name|
+      @exec_list << exec_object(key, @options[key], name)
+      end
     end
   end
 
   def execute code
+
     if @options[code[0]][:arg].nil?
       self.send code[0]
     else

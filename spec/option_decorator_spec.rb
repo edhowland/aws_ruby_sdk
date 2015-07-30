@@ -42,21 +42,6 @@ class MyNoShort < OptionDecorator
   def no_something # {description: 'do nothing', short: :nop}
   end
 end
-  describe 'args_to_opts_args' do
-    let(:myo) { MyNoShort.new }
-    before { @this = opd }
-    describe 'simple' do
-      subject { @this.args_to_opts_args @this.options_args }
-
-      specify { subject.must_equal ['-l', '--list-things', 'List Things'] }
-    end
-
-    describe 'with missing short' do
-      subject { m=myo; m.args_to_opts_args [[:no_something, nil, '--no-something', 'do nothing']] }
-
-      specify { subject.must_equal ['--no-something', 'do nothing'] }
-    end
-  end
 end
 
 
@@ -118,7 +103,7 @@ describe MixedCut do
   end
 
 class NoShort < OptionDecorator
-  def no_something # {description: 'do nothing', short: nil}
+  def no_something # {description: 'do nothing', short: :nop}
   end
 end
 
