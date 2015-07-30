@@ -2,10 +2,13 @@
 
 require_relative 'spec_helper'
 require 'application'
+require 'minitest/mock'
 require 'minitest/autorun'
 
 class MixedCut < OptionDecorator
   def long_option # {description: 'Long Option' } 
+  end
+  def arg_option name # {description: 'Arg Option', arg: String}
   end
 
 end
@@ -24,6 +27,13 @@ describe 'on_args' do
 end
 
 describe 'set_options'  do
+  before do
+    @mock = MiniTest::Mock.new
+    @mock.expect(:on, nil, ['-l', '--long-option', 'Long Option'])
+    @mock.expect(:on, nil, ['-a name', '--arg-option name', String, 'Arg Option'])
+  end
+  let(:cut) { MixedCut.new }
+  subject { cut.set_options @mock }
 
-
+  specify { subject; @mock.verify }
 end

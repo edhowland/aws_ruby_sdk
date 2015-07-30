@@ -72,15 +72,8 @@ end
 
   # set options in OptionParser opts object
   def set_options opts
-    options_args.each do |arg|
-      #opts.on *on_args
-
-      
-      if @options[arg[0]][:arg].nil?
-       opts.on(*arg[1..-1]) { @exec_list << [arg[0]] }
-      else
-       opts.on(*arg[1..-1]) {|name| @exec_list << [arg[0], name] }
-    end
+    @options.keys.each do |key|
+        opts.on(*on_args(@options[key]))
     end
   end
 
