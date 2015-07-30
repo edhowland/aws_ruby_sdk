@@ -45,9 +45,8 @@ let(:cut) { Cut.new }
 let(:opt) { 
 {long_option: {short: '-l', long: '--long-option', description: 'Long Option'} }
 }
-  
 
-  subject { c=cut;  c.expand_options; c.options }
+  subject { cut.expand_options }
 
   specify { subject.must_equal opt }
 end

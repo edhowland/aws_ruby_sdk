@@ -39,17 +39,10 @@ end
 
   def expand_options
       decorations = decorators
-    decorators.keys.each do |key|
+    decorations.keys.each do |key|
       options = decorations[key]
-      long = chain_case key.to_s
-      long = "--#{long}"
-      long += ' name' unless options[:arg].nil?
-      short = expand_short(options[:short] || key.to_s[0], options)
-      short = "-#{short}"
-      short += ' name' unless options[:arg].nil?
-
-        options[:long] = long
-      options[:short] = short
+        options[:long] = expand_long(key, options)
+      options[:short] = expand_short(key, options)
     end
 
     decorations
