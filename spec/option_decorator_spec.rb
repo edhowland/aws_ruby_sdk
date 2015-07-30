@@ -74,17 +74,6 @@ describe MultiCut do
     specify { mcut.decorators.must_equal @h }
   end
 
-  describe 'expand_short' do
-    subject { mcut.expand_short 'o', {} }
-
-    specify { subject.must_equal '-o' }
-  end
-
-  describe 'expand_short with arg' do
-    subject { mcut.expand_short 'k', {arg: String} }
-
-    specify { subject.must_equal '-k name' }
-  end
   describe 'expand_options' do
     before do
       @h = {
