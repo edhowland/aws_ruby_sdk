@@ -1,12 +1,9 @@
-# expand_opt_spec.rb - specs for expand_opt
+# expand_options_spec.rb - specs for expand_options
 
 require_relative 'spec_helper'
 require 'application'
 require 'minitest/autorun'
 
-#def expand_short key, options={}
-#  (options[:short] == :nop ? nil : ('-' + (options[:short] || key.to_s[0]) + (options[:arg] ? ' name' : '')))
-#end
 
 class Cut < OptionDecorator
   def long_option # {description: 'Long Option'}
@@ -41,4 +38,18 @@ describe 'expand_long' do
   specify { over.must_equal '--other-option' }
   specify { nop.must_be_nil }
   specify { arg.must_equal '--long-option name' }
+end
+
+describe 'expand_options' do
+let(:cut) { Cut.new }
+let(:opt) { 
+{long_option: {short: '-l', long: '--long-option', description: 'Long Option'} }
+}
+  
+
+  subject { c=cut;  c.expand_options; c.options }
+
+  specify do
+    
+  end
 end
