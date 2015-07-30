@@ -59,18 +59,18 @@ end
     end
   end
 
-  def args_to_opts_args args
-    this_args = args[0]
-      this_opt = @options[this_args[0]]
-      on_args = []
-      on_args << this_args[1] if this_opt[:short]
- #binding.pry
-      on_args << this_args[2]
-      on_args << this_opt[:arg]  if this_opt[:arg]
-      on_args << this_args[3]
 
-  on_args
+  def on_args option_h
+    args_a = []
+    args_a << option_h[:short] if option_h[:short]
+    args_a << option_h[:long] if option_h[:long]
+    args_a <<option_h[:arg] if option_h[:arg]
+    args_a << option_h[:description]    
+    args_a
   end
+
+
+  # set options in OptionParser opts object
   def set_options opts
     options_args.each do |arg|
       #opts.on *on_args

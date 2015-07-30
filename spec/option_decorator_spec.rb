@@ -39,7 +39,7 @@ describe OptionDecorator do
   end
 
 class MyNoShort < OptionDecorator
-  def no_something # {description: 'do nothing', short: nil}
+  def no_something # {description: 'do nothing', short: :nop}
   end
 end
   describe 'args_to_opts_args' do
@@ -52,7 +52,7 @@ end
     end
 
     describe 'with missing short' do
-      subject { m=myo; m.args_to_opts_args [[:no_something, nil, '--no-something-thing', 'do nothing']] }
+      subject { m=myo; m.args_to_opts_args [[:no_something, nil, '--no-something', 'do nothing']] }
 
       specify { subject.must_equal ['--no-something', 'do nothing'] }
     end
@@ -73,18 +73,6 @@ describe MultiCut do
 
     specify { mcut.decorators.must_equal @h }
   end
-
-  describe 'expand_options' do
-    before do
-      @h = {
-        create_key: {description: 'Create Key Pair', long: '--create-key name', short: '-k name', arg: String},
-        delete_key: {description: 'Delete Key Pair', long: '--delete-key name', short: '-d name', arg: String}
-      }
-    end
-
-    specify { mcut.options.must_equal @h }
-  end
-
 
   describe 'options_args with values' do
     specify { mcut.options_args.must_equal [
@@ -138,7 +126,7 @@ describe 'no short option' do
   let(:noshort) { NoShort.new }
   before { @mock = MiniTest::Mock.new; @mock.expect(:on, nil, ['--no-something', 'do nothing'])} 
 
-  specify { skip();  noshort.set_options @mock; @mock.verify }
+  specify {   noshort.set_options @mock; @mock.verify }
 end
 
 
