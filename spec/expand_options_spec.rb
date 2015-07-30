@@ -49,7 +49,5 @@ let(:opt) {
 
   subject { c=cut;  c.expand_options; c.options }
 
-  specify do
-    
-  end
+  specify { subject.must_equal opt }
 end
