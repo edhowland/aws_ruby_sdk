@@ -50,3 +50,16 @@ let(:opt) {
 
   specify { subject.must_equal opt }
 end
+
+
+class MixedCut < OptionDecorator
+  def long_option # { description " Long Option' }
+  end
+
+  def short_option # { description: 'Short Option', short: 'o', long: :nop }
+  end
+  def arg_option name # { description: 'Arg Option',arg: String }
+  end
+  def no_short # { description: 'No Short', short: :nop}
+  end 
+end
