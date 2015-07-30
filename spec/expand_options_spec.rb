@@ -53,7 +53,7 @@ end
 
 
 class MixedCut < OptionDecorator
-  def long_option # { description " Long Option' }
+  def long_option # { description: ' Long Option' }
   end
 
   def short_option # { description: 'Short Option', short: 'o', long: :nop }
@@ -62,4 +62,15 @@ class MixedCut < OptionDecorator
   end
   def no_short # { description: 'No Short', short: :nop}
   end 
+end
+
+describe 'expand_options: Mixed' do
+  let(:cut) { MixedCut.new }
+  subject { cut.expand_options }
+
+  # now check all individual option settings
+  specify { subject[:long_option][:short].wont_be_nil }
+  specify { subject[:no_short][:short].must_be_nil }
+  specify { subject[:arg_option][:short].must_equal '-a name' }
+
 end
