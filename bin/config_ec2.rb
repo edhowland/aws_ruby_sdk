@@ -50,6 +50,10 @@ class ConfigRequestor < OptionDecorator
   def security_groups name # { description: 'Set security group', short: 'g', arg: String}
     @ec2_config.options[:security_groups] = [name]
   end
+  def no_securitygroup # {description: 'Unset security Group', short: :nop}
+    @ec2_config.options.delete :security_groups
+
+  end
 
   def display # {description: 'Display currently set EC2 options' }
     puts "Currently set options in #{@ec2_config.fname}"
