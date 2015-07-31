@@ -16,7 +16,7 @@ def describe_instance instance
     puts "\tVPC ID: #{instance.vpc_id}"
     puts "\tPublic DNS: #{instance.public_dns_name}"
     puts "\tState of the instance: #{instance.state.name}"
-    puts "\tState Reason: #{instance.state_reason.message}"
+    #puts "\tState Reason: #{instance.state_reason.message}"
 end
 
 
@@ -88,6 +88,7 @@ EOP
     end
     rescue => err
       puts "Enumerating EC2 instances raised error:"
+      puts err.class.name
       puts err.message
     end
 
