@@ -81,6 +81,7 @@ EOP
     instance = @ec2.instance name
     puts 'Found it!'
     p instance
+    describe_instance instance
     rescue => err
       puts err.message
     end
