@@ -5,7 +5,7 @@ require 'application'
 require 'minitest/mock'
 require 'minitest/autorun'
 
-class MixedCut < OptionDecorator
+class SetMixedCut < OptionDecorator
   def long_option # {description: 'Long Option' } 
   end
   def arg_option name # {description: 'Arg Option', arg: String}
@@ -14,7 +14,7 @@ class MixedCut < OptionDecorator
 end
 
 describe 'on_args' do
-  let(:cut) { MixedCut.new }
+  let(:cut) { SetMixedCut.new }
   let(:noshort) { cut.on_args({description: 'No Short', short: nil, long: '--no-short'}) }
   let(:nolong) { cut.on_args({description: 'No Long', long: nil, short: '-n'}) }
   let(:arg) { cut.on_args({description: 'Arg', long: '--arg-option name', short: '-a name', arg: String}) }
@@ -32,7 +32,7 @@ describe 'set_options'  do
     @mock.expect(:on, nil, ['-l', '--long-option', 'Long Option'])
     @mock.expect(:on, nil, ['-a name', '--arg-option name', String, 'Arg Option'])
   end
-  let(:cut) { MixedCut.new }
+  let(:cut) { SetMixedCut.new }
   subject { cut.set_options @mock }
 
   specify { subject; @mock.verify }
