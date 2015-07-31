@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 require 'application'
 require 'minitest/autorun'
 
-class Cut < OptionDecorator
+class ExeCut < OptionDecorator
   def long_option # {description: 'Long Option' }
   end
   def arg_option name # {description: 'Arg Option', arg: String}
@@ -12,7 +12,7 @@ class Cut < OptionDecorator
 end
 
 describe 'exec_object' do
-  let(:cut) { Cut.new }
+  let(:cut) { ExeCut.new }
   let(:long) { cut.exec_object :long_option, {}, nil }
   subject { cut.exec_object :arg_option, {arg: String}, 'string' }
   specify { subject.must_equal [:arg_option, 'string'] }

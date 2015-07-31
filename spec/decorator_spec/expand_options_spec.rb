@@ -5,13 +5,13 @@ require 'application'
 require 'minitest/autorun'
 
 
-class Cut < OptionDecorator
+class ExpandCut < OptionDecorator
   def long_option # {description: 'Long Option'}
   end
 end
 
 describe 'expand_short' do
-  let(:o) { Cut.new }
+  let(:o) { ExpandCut.new }
   let(:opt) { o.expand_short :option }
   let(:override) { o.expand_short :option, {short: 'p'} }
   let(:oarg) { o.expand_short :option, {arg: String} }
@@ -28,7 +28,7 @@ describe 'expand_short' do
 end
 
 describe 'expand_long' do
-  let(:o) { Cut.new }
+  let(:o) { ExpandCut.new }
   let(:long) { o.expand_long :long_option }
   let(:over) { o.expand_long :long_option, {long: 'other-option'} }
   let(:nop) { o.expand_long :long_option, {long: :nop} }
@@ -41,7 +41,7 @@ describe 'expand_long' do
 end
 
 describe 'expand_options' do
-let(:cut) { Cut.new }
+let(:cut) { ExpandCut.new }
 let(:opt) { 
 {long_option: {short: '-l', long: '--long-option', description: 'Long Option'} }
 }
