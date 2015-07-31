@@ -70,11 +70,22 @@ EOP
     end
   end
 
-  def describe_ec2 id # { description: 'Describe EC2 Instance', short: 'i', arg: String }
-    instance = @ec2.instance id
-    describe_instance instance
-  end
+#  def describe_ec2 id # { description: 'Describe EC2 Instance', short: 'i', arg: String }
+#    instance = @ec2.instance id
+#    describe_instance instance
+#  end
 
+  def describe_ec2 name # { description: 'Describe a single instance', short: :nop, arg: String }
+    puts "Finding ec2 instance with id: #{name}"
+    begin
+    instance = @ec2.instance name
+    puts 'Found it!'
+    p instance
+    rescue => err
+      puts err.message
+    end
+
+  end
   def list_ec2 # {description: 'List EC2 Instances', short: 'e'}
     puts 'Enumerating EC2 Instances'
     puts 'This could take some few minutes.'
