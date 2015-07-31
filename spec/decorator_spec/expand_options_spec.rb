@@ -52,7 +52,7 @@ let(:opt) {
 end
 
 
-class MixedCut < OptionDecorator
+class ExpandMixedCut < OptionDecorator
   def long_option # { description: ' Long Option' }
   end
   def other_option # { description: 'Other Option', long: 'famous-thing', short: 'f' }
@@ -67,7 +67,7 @@ class MixedCut < OptionDecorator
 end
 
 describe 'expand_options: Mixed' do
-  let(:cut) { MixedCut.new }
+  let(:cut) { ExpandMixedCut.new }
   subject { cut.expand_options }
 
   # now check all individual option settings
