@@ -70,10 +70,6 @@ EOP
     end
   end
 
-#  def describe_ec2 id # { description: 'Describe EC2 Instance', short: 'i', arg: String }
-#    instance = @ec2.instance id
-#    describe_instance instance
-#  end
 
   def describe_ec2 name # { description: 'Describe a single instance', short: :nop, arg: String }
     puts "Finding ec2 instance with id: #{name}"

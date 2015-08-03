@@ -48,6 +48,13 @@ class Ec2Requestor < OptionDecorator
     puts "EC2 Instance ID: #{instances.first.id}"
 
   end
+
+  def stop_ec2 name # {description: 'Stop EC2 Instance ID', short: 'p', arg: String}
+#    instance = @ec2.instance id
+  end
+
+  def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
+  end
 end
 
 ec2_config = Ec2Options.load 'ec2_default.json'
