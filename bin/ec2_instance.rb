@@ -50,7 +50,19 @@ class Ec2Requestor < OptionDecorator
   end
 
   def stop_ec2 name # {description: 'Stop EC2 Instance ID', short: 'p', arg: String}
-#    instance = @ec2.instance id
+
+    puts "Finding ec2 instance with id: #{name}"
+    begin
+    instance = @ec2.instance name
+    puts 'Found it!'
+    p instance
+
+    # attempt to stop it
+    instance.stop( ) # need an arg here
+    rescue => err
+      puts err.message
+    end
+
   end
 
   def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
