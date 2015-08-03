@@ -1,1 +1,1 @@
-{"key_name":"edhowland.rwcitekllc","min_count":1,"max_count":1,"instance_type":"t1.micro","image_id":"ami-16c5b87e"}
+{"key_name":"edh-ruby","min_count":1,"max_count":1,"instance_type":"t1.micro","image_id":"ami-16c5b87e"}
