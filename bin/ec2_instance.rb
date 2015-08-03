@@ -6,6 +6,7 @@ require 'json'
 require_relative 'ec2_options'
 require './messages'
 require './requestor'
+require './handle_instance'
 
 # check key name syntax: must be form of: name.name
 def check_key_name_syntax keyname
@@ -78,6 +79,13 @@ class Ec2Requestor < OptionDecorator
       p response
     rescue => err
       puts err.message
+    end
+  end
+
+  def terminate_ec2 name # { description: 'Terminate EC2 Instance ID', arg: String}
+    puts "Terminating instance ID: #{name}"
+    handle_instance @ec2,name,  {dry_run: true} do |instance, opts|
+      instance.terminate opts
     end
   end
 end
