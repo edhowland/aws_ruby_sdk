@@ -58,7 +58,9 @@ class Ec2Requestor < OptionDecorator
     p instance
 
     # attempt to stop it
-    instance.stop( ) # need an arg here
+    response = instance.stop({ sry_run: true } )
+    puts 'stopped'
+    p response
     rescue => err
       puts err.message
     end
