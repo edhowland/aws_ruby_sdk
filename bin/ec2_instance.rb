@@ -67,6 +67,18 @@ class Ec2Requestor < OptionDecorator
   end
 
   def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
+
+    puts "Atteptemping to start instance with id: #{name}"
+    instance = @ec2.instance name
+    puts 'Found it'
+    puts 'Now attempting to start it'
+    begin
+      response = instance.start({ additional_info: "tarted by ec2_instance.rb"})
+      puts 'Started'
+      p response
+    rescue => err
+      puts err.message
+    end
   end
 end
 
