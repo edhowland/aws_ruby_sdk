@@ -84,7 +84,7 @@ class Ec2Requestor < OptionDecorator
 
   def terminate_ec2 name # { description: 'Terminate EC2 Instance ID', arg: String}
     puts "Terminating instance ID: #{name}"
-    handle_instance @ec2,name,  {dry_run: true} do |instance, opts|
+    handle_instance @ec2,name,  {} do |instance, opts|
       instance.terminate opts
     end
   end
