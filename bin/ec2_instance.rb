@@ -57,7 +57,7 @@ class Ec2Requestor < OptionDecorator
     puts 'Found it!'
 
     # attempt to stop it
-    response = instance.stop({ dry_run: true } )
+    response = instance.stop({ } )
     puts 'stopped'
     p response
     rescue => err
