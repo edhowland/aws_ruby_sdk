@@ -51,19 +51,22 @@ class Ec2Requestor < OptionDecorator
   end
 
   def stop_ec2 name # {description: 'Stop EC2 Instance ID', short: 'p', arg: String}
-
-    puts "Finding ec2 instance with id: #{name}"
-    begin
-    instance = @ec2.instance name
-    puts 'Found it!'
-
-    # attempt to stop it
-    response = instance.stop({ } )
-    puts 'stopped'
-    p response
-    rescue => err
-      puts err.message
+    response = handle_instance @ec2, name do |instance, opts|
+      instance.stop opts
     end
+
+    #puts "Finding ec2 instance with id: #{name}"
+    #begin
+    #instance = @ec2.instance name
+    #puts 'Found it!'
+#
+    ## attempt to stop it
+    #response = instance.stop({ } )
+    #puts 'stopped'
+    #p response
+    #rescue => err
+      #puts err.message
+    #end
 
   end
 
