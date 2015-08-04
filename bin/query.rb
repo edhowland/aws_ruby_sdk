@@ -8,6 +8,7 @@ require './requestor'
 
 def describe_instance instance
         puts "Instance ID: #{instance.id}"
+    puts "\tState of the instance: #{instance.state.name}"
   puts "\tInstance image: #{instance.image.id}"
     puts "\tType: #{instance.instance_type}"
     puts "\tKey Pair: #{instance.key_pair.key_name}"
@@ -15,7 +16,6 @@ def describe_instance instance
    puts "\tPublic IP: #{instance.public_ip_address}"
     puts "\tVPC ID: #{instance.vpc_id}"
     puts "\tPublic DNS: #{instance.public_dns_name}"
-    puts "\tState of the instance: #{instance.state.name}"
     #puts "\tState Reason: #{instance.state_reason.message}"
 end
 
