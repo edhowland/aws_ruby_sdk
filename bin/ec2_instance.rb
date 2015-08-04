@@ -50,7 +50,14 @@ class Ec2Requestor < OptionDecorator
 
   end
 
+  def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}
+    response = handle_instance @ec2, name, {} do |instance, opts|
+      instance.reboot opts
+    end
+  end
+
   def stop_ec2 name # {description: 'Stop EC2 Instance ID', short: 'p', arg: String}
+    puts "Atteptemping to stop instance with id: #{name}"
     response = handle_instance @ec2, name do |instance, opts|
       instance.stop opts
     end
