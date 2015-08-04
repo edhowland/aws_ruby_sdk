@@ -55,18 +55,6 @@ class Ec2Requestor < OptionDecorator
       instance.stop opts
     end
 
-    #puts "Finding ec2 instance with id: #{name}"
-    #begin
-    #instance = @ec2.instance name
-    #puts 'Found it!'
-#
-    ## attempt to stop it
-    #response = instance.stop({ } )
-    #puts 'stopped'
-    #p response
-    #rescue => err
-      #puts err.message
-    #end
 
   end
 
