@@ -91,6 +91,29 @@ The sssh-login.sh program will use the ubuntu name as the user.
 Once you are logged in, use 'logout' to logout.
 
 
+```
+
+# get and record public ip of instance:
+./query.rb --describe-ec2 i-xxxxx # instance id
+# public IP: 55.xxx.xx.xxx
+
+# login
+$ ./ssh-login.sh 55.XX.XX.XXXkey_name
+
+```
+
+## Rebooting the instance
+
+
+The EC2 instance can be rebooted if it is running.
+
+
+```
+
+$ ./ec2_instance.rb --reboot-ec2 i-xxxx # the instance id
+
+```
+
 ## Cleaning up
 
 
