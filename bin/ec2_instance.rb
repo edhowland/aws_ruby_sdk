@@ -13,6 +13,16 @@ def check_key_name_syntax keyname
   raise RuntimeError.new("Key name: #{keyname} invalid/ Must be 'name.handle'") if keyname.split('.').length != 2
 end
 
+def describe_image image
+  puts 'Image created successfully'
+  puts "Image ID: #{image.image_id}"
+  puts "Image Name: #{image.name}"
+  puts "Description: #{image.description}"
+  puts "Creation Date: #{image.creation_date}"
+  puts "State of Image: #{image.state}"
+  puts "Publicly Launchable: #{image.public.to_s}"
+end
+
 class Ec2Requestor < OptionDecorator
   def initialize ec2_config
     super
@@ -51,27 +61,22 @@ class Ec2Requestor < OptionDecorator
   end
 
   def create_image name # {description: 'Create new AMI Image from this instance', arg: String, short: 'i'}
-    print 'Name of image (3-128 chars)[Req.]: '; name= gets.chomp
-    print 'Description of image: '; description = gets.chomp
+    print 'Name of image (3-128 chars)[Req.]: '; image_name= gets.chomp
+    print 'Description of image [Opt.]: '; description = gets.chomp
+#    name = "i-#{name}"
     image_options = {
-        dry_run: true,
-        name: name
+  #      dry_run: true,
+        name: image_name
       }
     image_options[:description] = description unless description.length.zero?
     puts 'Using options:'
     p image_options
     puts "Attempting to create a new image in instance ID: #{name} with name: #{name} and description: #{description}"
-#    image = handle_instance @ec2, name, image_optionsdo |instance, opts|
-#      instance.create_image opts
-#    end
+    image = handle_instance @ec2, name, image_options do |instance, opts|
+      instance.create_image opts
+    end
+    describe_image image unless image.nil?
 
-    puts 'Image created successfully' unless image.nil?
-    puts "\tImage ID: #{image.image_id}"
-    puts "Image Name: #{image.name}"
-    puts "Description: #{image.description}"
-    puts "Creation Date: #{image.creation_date}"
-    puts "State of Image: #{image.state}"
-    puts "Publicly Launchable: #{image.public.to_s}"
   end
 
   def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}
