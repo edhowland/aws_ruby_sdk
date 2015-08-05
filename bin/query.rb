@@ -15,6 +15,15 @@ def describe_instance instance
     puts "\tPrivate IP Address: #{instance.private_ip_address}"
    puts "\tPublic IP: #{instance.public_ip_address}"
     puts "\tVPC ID: #{instance.vpc_id}"
+  puts "\tVolumes Collection"
+  instance.volumes.each do |vol|
+    puts "\t-------------"
+    puts "\tVolumne ID: #{vol.volume_id}"
+    puts "\tVolume Type: #{vol.volume_type}"
+    puts "\tVolume State: #{vol.state}"
+    puts "\tVolume Size: #{vol.size}"
+    puts "\tSnapshot ID: #{vol.snapshot_id}"
+  end
     puts "\tPublic DNS: #{instance.public_dns_name}"
     #puts "\tState Reason: #{instance.state_reason.message}"
 end
