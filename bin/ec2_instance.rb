@@ -50,7 +50,24 @@ class Ec2Requestor < OptionDecorator
 
   end
 
+  def create_image name # {description: 'Create new AMI Image from this instance', arg: String, short: 'i'}
+    print 'Name of image (3-128 chars)[Req.]: '; name= gets.chomp
+    print 'Description of image: '; description = gets.chomp
+    image_options = {
+        dry_run: true,
+        name: name
+      }
+    image_options[:description] = description unless description.length.zero?
+    puts 'Using options:'
+    p image_options
+    puts "Attempting to create a new image in instance ID: #{name} with name: #{name} and description: #{description}"
+#    image = handle_instance @ec2, name, image_optionsdo |instance, opts|
+#      instance.create_image opts
+#    end
+  end
+
   def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}
+    puts "Attempting to reboot instance ID: #{name}"
     response = handle_instance @ec2, name, {} do |instance, opts|
       instance.reboot opts
     end
