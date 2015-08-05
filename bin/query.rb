@@ -23,6 +23,14 @@ def describe_instance instance
     puts "\tVolume State: #{vol.state}"
     puts "\tVolume Size: #{vol.size}"
     puts "\tSnapshot ID: #{vol.snapshot_id}"
+    puts "\t Snapshots:"
+    vol.snapshots.each do |snapshot|
+      puts "\t\tSnapshot ID: #{snapshot.snapshot_id}"
+    puts "\t\tDescription: #{snapshot.description}"
+    puts "\t\tState: #{snapshot.state}"
+    puts "\t\tVolume ID: #{snapshot.volume_id}"
+    puts "\t\tVolume Size: #{snapshot.volume_size}"
+    end
   end
     puts "\tPublic DNS: #{instance.public_dns_name}"
     #puts "\tState Reason: #{instance.state_reason.message}"
