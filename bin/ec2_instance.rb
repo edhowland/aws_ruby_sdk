@@ -64,6 +64,14 @@ class Ec2Requestor < OptionDecorator
 #    image = handle_instance @ec2, name, image_optionsdo |instance, opts|
 #      instance.create_image opts
 #    end
+
+    puts 'Image created successfully' unless image.nil?
+    puts "\tImage ID: #{image.image_id}"
+    puts "Image Name: #{image.name}"
+    puts "Description: #{image.description}"
+    puts "Creation Date: #{image.creation_date}"
+    puts "State of Image: #{image.state}"
+    puts "Publicly Launchable: #{image.public.to_s}"
   end
 
   def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}

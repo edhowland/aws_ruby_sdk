@@ -14,3 +14,10 @@ link 'EC2 Resource', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Resource
 link 'EC2 Instance', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Instance.html'
 
 link 'Key Pair', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/KeyPair.html'
+link 'AWS::EC2::Snapshop', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Snapshot.html'
+link 'AWS::EC2::Volume', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Volume.html'
+link 'AWS::EC2::Image', 'http://docs.aws.amazon.com/sdkforruby/api/Aws/EC2/Image.html'
+
+h2 'Ruby links, Ubuntu packages, Misc.'
+
+Link 'Brightbox PPA Ruby 2.2', 'https://www.brightbox.com/blog/2015/01/05/ruby-2-2-0-packages-for-ubuntu/'
