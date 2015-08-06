@@ -92,23 +92,3 @@ end
 # now save it output
 ec2_options.fname = ec2_fname
 ec2_options.save
-
-
-
-
-#ec2_fname = format_fname 'default'
-#ec2_fname_hash = {config_fname: ec2_fname}
-#config_options = ConfigOptions.new ec2_fname_hash
-#File.write(ec2_fname, {}.to_json)unless File.exists? ec2_fname
-#
-#
-#ec2_options = Ec2Options.load ec2_fname
-#requestor = ConfigRequestor.new ec2_options
-#
-#
-#
-#check_and_execute requestor
-#
-#ec2_options.save
-
-

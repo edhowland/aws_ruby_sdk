@@ -4,6 +4,7 @@
 require_relative '../lib/application'
 require 'json'
 require_relative 'ec2_options'
+require_relative 'config_file'
 require './messages'
 require_relative 'format_fname'
 require './requestor'
