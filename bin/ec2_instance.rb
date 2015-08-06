@@ -104,6 +104,31 @@ class Ec2Requestor < OptionDecorator
   end
 end
 
+class InstanceOptions < OptionDecorator
+  def initialize options
+    super
+    @my_options = options
+  end
+
+  def delete_key name # {description: 'Delete Key Pair name', arg: String, short: :nop}
+    @my_options[:delete_key] = name
+  end
+end
+
+
+file_hash = {config_fname: format_fname('default')}
+config_file = ConfigFile.new file_hash
+
+instance_hash = {}
+instance_options = InstanceOptions.new instance_hash
+
+options('EC2 Instance Operations') do |opts|
+  config_file.set_options opts
+  opts.separator ''
+  instance_options.set_options opts
+end
+exit
+### remove this:
 ec2_fname = format_fname 'default'
 puts "Using options from #{ec2_fname}"
 ec2_config = Ec2Options.load ec2_fname
