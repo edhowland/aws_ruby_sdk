@@ -38,6 +38,25 @@ $ bundle
 
 ```
 
+### EC2 Configuration
+
+Before interacting with AWS EC2 instances, you
+should set up the ec2 JSON file(s).
+
+
+```
+$ cd bin
+$ ./init-json.sh
+
+Creating dir: /home/vagrant/.aws/instances
+creating file: /home/vagrant/.aws/instances/ec2_default.json
+Now run ./config_ec2.rb --init-settings
+to set initial defaults in /home/vagrant/.aws/instances/ec2_default.json
+$ ./config_ec2.rb  --init-settings
+Currently operating on /home/vagrant/.aws/instances/ec2_default.json
+
+```
+
 ### First code
 
 Once you have set your credentials and region in ~/.aws, you need to load into the environment.
