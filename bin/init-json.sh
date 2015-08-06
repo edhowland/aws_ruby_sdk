@@ -11,6 +11,8 @@ mfile()
 {
   echo creating file: $1
   ruby -r json -e "File.write('$1', {}.to_json)"
+  echo Now run ./config_ec2.rb --init-settings 
+  echo     to set initial defaults in $1
 }
 
 dir=~/.aws
