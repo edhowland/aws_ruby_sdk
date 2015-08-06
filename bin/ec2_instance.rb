@@ -116,8 +116,8 @@ class InstanceOptions < OptionDecorator
 end
 
 
-file_hash = {config_fname: format_fname('default')}
-config_file = ConfigFile.new file_hash
+config_hash = {config_fname: format_fname('default')}
+config_file = ConfigFile.new config_hash
 
 instance_hash = {}
 instance_options = InstanceOptions.new instance_hash
@@ -127,6 +127,15 @@ options('EC2 Instance Operations') do |opts|
   opts.separator ''
   instance_options.set_options opts
 end
+
+config_file.execute!
+
+ec2_fname = format_fname(config_hash[:config_fname])
+die("Missing EC2 Settings File: #{ec2_fname}") unless File.exists? ec2_fname
+puts "Using settings in: #{ec2_fname}"
+ec2_options = Ec2Options.load ec2_fname
+
+
 exit
 ### remove this:
 ec2_fname = format_fname 'default'
