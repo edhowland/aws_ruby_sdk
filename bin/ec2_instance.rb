@@ -7,21 +7,13 @@ require_relative 'ec2_options'
 require './messages'
 require './requestor'
 require './handle_instance'
+require './describe_image'
 
 # check key name syntax: must be form of: name.name
 def check_key_name_syntax keyname
   raise RuntimeError.new("Key name: #{keyname} invalid/ Must be 'name.handle'") if keyname.split('.').length != 2
 end
 
-def describe_image image
-  puts 'Image created successfully'
-  puts "Image ID: #{image.image_id}"
-  puts "Image Name: #{image.name}"
-  puts "Description: #{image.description}"
-  puts "Creation Date: #{image.creation_date}"
-  puts "State of Image: #{image.state}"
-  puts "Publicly Launchable: #{image.public.to_s}"
-end
 
 class Ec2Requestor < OptionDecorator
   def initialize ec2_config
@@ -63,7 +55,6 @@ class Ec2Requestor < OptionDecorator
   def create_image name # {description: 'Create new AMI Image from this instance', arg: String, short: 'i'}
     print 'Name of image (3-128 chars)[Req.]: '; image_name= gets.chomp
     print 'Description of image [Opt.]: '; description = gets.chomp
-#    name = "i-#{name}"
     image_options = {
   #      dry_run: true,
         name: image_name

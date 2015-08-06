@@ -4,6 +4,7 @@
 require_relative  '../lib/application'
 require './messages'
 require './requestor'
+require './describe_image'
 
 
 def describe_instance instance
@@ -118,6 +119,14 @@ EOP
     end
 
     puts "Found #{instance_count} Instances"
+  end
+
+  def list_images name # {description: 'List images', short: 'i', arg: String}
+    puts "Enumerating images with id: #{name}"
+    @ec2.images({ image_ids: [name]}).each do |image|
+      puts 'Image:'
+      describe_image image
+    end
   end
 
   def list_s3 # {description: 'List S3 Objects', short: 's'}
