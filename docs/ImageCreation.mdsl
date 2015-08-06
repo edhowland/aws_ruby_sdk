@@ -1,0 +1,47 @@
+h1 'Image Creation'
+
+h2 'Abstract'
+
+para %q{
+You can create a new image from an existing EC2 instance.
+You might want to do this after installing packages and apllications
+in your existing instance.
+You should stop the instance first. See the CreateEC2 guide.
+}
+
+code %q{
+$ ./ec2_instance.rb -i i-xxxx # the instnce if
+}
+
+para %q{
+The state of the new image will be 'pending'.
+It might take many minutes or even hours to come up.
+You can query this image with:
+}
+
+code %q{
+$ ./query.rb -i ami-xxxxx # the image id from the last step
+}
+
+para %q{
+Once the image is listed as 'Available',
+add the ami id to the ec2_default.json:
+}
+
+code %q{
+$ ./configure_ec2.rb -i ami-xxxxxx # the ami id 
+}
+
+para %q{
+Next, create the new instance.
+}
+
+code %q{
+$ ./ec2_instance -n
+}
+
+h2 'Finishing up'
+
+para %q{
+Use the instrunctions in CreateEC2 to queryy, stop, start, reboot and terminate the instance
+}
