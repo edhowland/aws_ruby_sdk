@@ -3,6 +3,7 @@
 
 require 'json'
 require_relative '../lib/application'
+require_relative 'config_file'
 require_relative 'config_options'
 require_relative 'format_fname'
 require_relative 'ec2_options'
