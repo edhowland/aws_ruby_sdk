@@ -8,7 +8,7 @@ require_relative 'messages'
 require_relative 'requestor'
 
 def format_fname name
-  "ec2_#{name}.json"
+  File.expand_path "~/.aws/instances/ec2_#{name}.json"
 end
 
 class ConfigRequestor < OptionDecorator
@@ -63,6 +63,7 @@ end
 
 
 ec2_fname = format_fname 'default'
+puts "Currently operating on #{ec2_fname}"
 File.write(ec2_fname, {}.to_json)unless File.exists? ec2_fname
 
 
