@@ -22,6 +22,7 @@ class ConfigRequestor < OptionDecorator
     p @ec2_config.options
     puts "Saving defaults to #{@ec2_config.fname}"
     @ec2_config.save
+    exit
   end
 
   def dry_run # {description: 'Set dry_run parameter', short: 'y' }
