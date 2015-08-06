@@ -3,10 +3,10 @@
 
 require 'json'
 require_relative '../lib/application'
+require_relative 'format_fname'
 require_relative 'ec2_options'
 require_relative 'messages'
 require_relative 'requestor'
-require_relative 'format_fname'
 
 
 class ConfigRequestor < OptionDecorator
@@ -14,8 +14,15 @@ class ConfigRequestor < OptionDecorator
     super
     @ec2_config = ec2_config
   end
-#  def file name # {description: 'File name to create or read', arg: String}
-#  end
+
+  def init_defaults # { description: 'Initialize default settings', short: :nop}
+    puts 'Initialize defaults'
+  @ec2_config = Ec2Options.default
+    puts 'Currently defaults:'
+    p @ec2_config.options
+    puts "Saving defaults to #{@ec2_config.fname}"
+    @ec2_config.save
+  end
 
   def dry_run # {description: 'Set dry_run parameter', short: 'y' }
     @ec2_config.options[:dry_run] = true
@@ -54,7 +61,7 @@ class ConfigRequestor < OptionDecorator
   end
 
   def display # {description: 'Display currently set EC2 options' }
-    puts "Currently set options in #{@ec2_config.fname}"
+    puts "Currently set options "
     p @ec2_config.options
   end
 end

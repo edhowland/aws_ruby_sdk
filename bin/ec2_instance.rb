@@ -5,6 +5,7 @@ require_relative '../lib/application'
 require 'json'
 require_relative 'ec2_options'
 require './messages'
+require_relative 'format_fname'
 require './requestor'
 require './handle_instance'
 require './describe_image'
@@ -102,7 +103,9 @@ class Ec2Requestor < OptionDecorator
   end
 end
 
-ec2_config = Ec2Options.load 'ec2_default.json'
+ec2_fname = format_fname 'default'
+puts "Using options from #{ec2_fname}"
+ec2_config = Ec2Options.load ec2_fname
 requestor = Ec2Requestor.new ec2_config
 
 
