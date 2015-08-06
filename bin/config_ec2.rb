@@ -16,15 +16,6 @@ class ConfigRequestor < OptionDecorator
     @ec2_config = ec2_config
   end
 
-  def init_defaults # { description: 'Initialize default settings', short: :nop}
-    puts 'Initialize defaults'
-  @ec2_config = Ec2Options.default
-    puts 'Currently defaults:'
-    p @ec2_config.options
-    puts "Saving defaults to #{@ec2_config.fname}"
-    @ec2_config.save
-    exit
-  end
 
   def dry_run # {description: 'Set dry_run parameter', short: 'y' }
     @ec2_config.options[:dry_run] = true
@@ -76,6 +67,13 @@ end
 config_options.execute!
 ec2_fname = format_fname config_hash[:config_fname]
 puts "Currently operating on #{ec2_fname}"
+if config_hash[:init]
+  e = Ec2Options.default
+  e.fname = ec2_fname
+  e.save
+  exit
+end
+
 
 requestor.execute!
 
@@ -89,6 +87,10 @@ if config_hash[:display]
   puts 'Currently settings:'
   p ec2_options.options
 end
+
+# now save it output
+ec2_options.fname = ec2_fname
+ec2_options.save
 
 
 
