@@ -62,7 +62,16 @@ class ConfigRequestor < OptionDecorator
   end
 end
 
+config_hash = {}
+ec2_options = Ec2Options.new
+config_options = ConfigOptions.new config_hash
+requestor = ConfigRequestor.new ec2_options
 
+options('Configure EC2 Instance Operations') do |opts|
+ config_options.set_options opts
+ opts.separator ''
+  requestor.set_options opts
+end
 
 
 
@@ -80,11 +89,6 @@ end
 #requestor = ConfigRequestor.new ec2_options
 #
 #
-#options('Configure EC2 Instance Operations') do |opts|
-  #config_options.set_options opts
-  #opts.separator ''
-  #requestor.set_options opts
-#end
 #
 #check_and_execute requestor
 #
