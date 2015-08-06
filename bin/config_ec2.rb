@@ -3,6 +3,7 @@
 
 require 'json'
 require_relative '../lib/application'
+require_relative 'config_options'
 require_relative 'format_fname'
 require_relative 'ec2_options'
 require_relative 'messages'
@@ -69,6 +70,8 @@ end
 
 
 ec2_fname = format_fname 'default'
+ec2_fname_hash = {config_fname: ec2_fname}
+config_options = ConfigOptions.new ec2_fname_hash
 puts "Currently operating on #{ec2_fname}"
 File.write(ec2_fname, {}.to_json)unless File.exists? ec2_fname
 
@@ -78,6 +81,7 @@ requestor = ConfigRequestor.new ec2_options
 
 
 options('Configure EC2 Instance Operations') do |opts|
+  config_options.set_options opts
   requestor.set_options opts
 end
 
