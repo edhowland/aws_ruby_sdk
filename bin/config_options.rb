@@ -9,4 +9,8 @@ class ConfigOptions < OptionDecorator
   def config_fname name # {description: 'File name root for config settings', short: 'f', arg: String}
     @my_options[:config_fname] = name
 end
+
+  def display_settings # {description: 'Display currently settings'}
+    @my_options[:display] = true
+  end
 end

@@ -59,12 +59,6 @@ class ConfigRequestor < OptionDecorator
   end
   def no_securitygroup # {description: 'Unset security Group', short: :nop}
     @ec2_config.options.delete :security_groups
-
-  end
-
-  def display # {description: 'Display currently set EC2 options' }
-    puts "Currently set options "
-    p @ec2_config.options
   end
 end
 
@@ -82,6 +76,7 @@ requestor = ConfigRequestor.new ec2_options
 
 options('Configure EC2 Instance Operations') do |opts|
   config_options.set_options opts
+  opts.separator ''
   requestor.set_options opts
 end
 
