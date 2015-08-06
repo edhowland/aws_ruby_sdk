@@ -121,6 +121,10 @@ EOP
     puts "Found #{instance_count} Instances"
   end
 
+  def ubuntu_image # {description:  'Display AMI ID for Ubuntu 14.04'}
+    puts "AMI ID for ubuntu14.04: ami-16c5b87e"
+  end
+
   def list_images name # {description: 'List images', short: 'i', arg: String}
     puts "Enumerating images with id: #{name}"
     @ec2.images({ image_ids: [name]}).each do |image|

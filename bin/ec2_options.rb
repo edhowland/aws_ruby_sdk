@@ -28,9 +28,13 @@ class Ec2Options
     self.new fname, symbol_options
   end
 
+  # merge two object of this class
+  def merge! that
+      @options = that.options.merge @options
+  end
+
   def save
     File.write(@fname, @options.to_json)
   end
 end
 
-#{"key_name":"edhowland.rwcitekllc","min_count":1,"max_count":1,"instance_type":"t1.micro","image_id":"ami-16c5b87e"}

@@ -62,7 +62,7 @@ class ConfigRequestor < OptionDecorator
   end
 end
 
-config_hash = {}
+config_hash = {config_fname: 'default'}
 ec2_options = Ec2Options.new
 config_options = ConfigOptions.new config_hash
 requestor = ConfigRequestor.new ec2_options
@@ -73,7 +73,22 @@ options('Configure EC2 Instance Operations') do |opts|
   requestor.set_options opts
 end
 
+config_options.execute!
+ec2_fname = format_fname config_hash[:config_fname]
+puts "Currently operating on #{ec2_fname}"
 
+requestor.execute!
+
+if File.exists? ec2_fname
+  existing_ec2 = Ec2Options.load(ec2_fname)
+  ec2_options.merge! existing_ec2
+end
+
+
+if config_hash[:display]
+  puts 'Currently settings:'
+  p ec2_options.options
+end
 
 
 
@@ -81,7 +96,6 @@ end
 #ec2_fname = format_fname 'default'
 #ec2_fname_hash = {config_fname: ec2_fname}
 #config_options = ConfigOptions.new ec2_fname_hash
-#puts "Currently operating on #{ec2_fname}"
 #File.write(ec2_fname, {}.to_json)unless File.exists? ec2_fname
 #
 #
