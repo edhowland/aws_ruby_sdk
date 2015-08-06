@@ -14,6 +14,22 @@ that contains the parameters that describe the new instance.
 You can create this file with the program: configure_ec2.rb.
 
 
+By default, the default JSON file exists in ~/.aws/instances/ec2_default.json
+If you haven't already done so, you can create this dir and file with 'init-json.sh' program.
+
+
+```
+$ cd bin
+$ ./init-json.sh
+Creating dir: /home/vagrant/.aws/instances
+creating file: /home/vagrant/.aws/instances/ec2_default.json
+Now run ./config_ec2.rb --init-settings
+to set initial defaults in /home/vagrant/.aws/instances/ec2_default.json
+$ ./config_ec2.rb  --init-settings
+Currently operating on /home/vagrant/.aws/instances/ec2_default.json
+
+```
+
 ### Options
 
 All three programs are communicated with via command line options.
@@ -103,6 +119,12 @@ be set at the same time. To see a list of the currently set options use the '-d 
     -d, --display                    Display currently set EC2 options
 
 ```
+
+### Using a different EC2 settings file
+
+You can override the default settings for the config_ec2.rb program with the -f option.
+Any settings you make after the -f name option will be set in the file ~/.aws/instances/ec2_name.json
+
 
 ### --dry-run
 
