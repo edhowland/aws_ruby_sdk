@@ -6,10 +6,8 @@ require_relative '../lib/application'
 require_relative 'ec2_options'
 require_relative 'messages'
 require_relative 'requestor'
+require_relative 'format_fname'
 
-def format_fname name
-  File.expand_path "~/.aws/instances/ec2_#{name}.json"
-end
 
 class ConfigRequestor < OptionDecorator
   def initialize ec2_config
