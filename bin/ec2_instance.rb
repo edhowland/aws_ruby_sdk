@@ -113,6 +113,10 @@ class InstanceOptions < OptionDecorator
   def delete_key name # {description: 'Delete Key Pair name', arg: String, short: :nop}
     @my_options[:delete_key] = name
   end
+
+  def new_ec2 # {}
+    @my_options[:new_ec2] = true
+  end
 end
 
 
