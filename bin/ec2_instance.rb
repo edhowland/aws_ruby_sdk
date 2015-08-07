@@ -166,16 +166,14 @@ p instance_hash
 
 # execute requested actions
 ec2 = ec2_resource
-if instance_hash[:stop_ec2]
-  id = instance_hash[:stop_ec2]
+if id = instance_hash[:stop_ec2] 
   puts "Attempting to stop #{id}"
   handle_instance ec2, id do |instance, opts|
       instance.stop opts
   end
 end
 
-if instance_hash[:start_ec2]
-  id = instance_hash[:start_ec2]
+if id = instance_hash[:start_ec2]
     puts "Attempting to start instance with id: #{id}"
     response = handle_instance ec2, id, { additional_info: "tarted by ec2_instance.rb"} do |instance, opts|
          instance.start opts
