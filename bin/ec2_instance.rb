@@ -186,6 +186,13 @@ if id=instance_hash[:terminate_ec2]
     instance.terminate opts
   end
 end
+
+if id = instance_hash[:reboot_ec2]
+    puts "Attempting to reboot instance ID: #{id}"
+    response = handle_instance ec2, id, {} do |instance, opts|
+      instance.reboot opts
+    end
+end
 exit
 ### remove this:
 ec2_fname = format_fname 'default'
