@@ -222,3 +222,13 @@ if id = instance_hash[:create_image]
   end
   describe_image image unless image.nil?
 end
+
+if key_name= instance_hash[:delete_key]
+    puts "Deleting Key Pair: #{key_name}"
+ key_options = {key_names: [key_name]}
+    key_pairs = ec2.key_pairs key_options
+    key_pair = key_pairs.first
+    raise RuntimeError.new("No key found matching: #{keyname}") if key_pair.nil?
+    key_pair.delete
+    puts "Key Pair #{keyname} deleted."
+end
