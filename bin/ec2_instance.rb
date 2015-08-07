@@ -117,6 +117,22 @@ class InstanceOptions < OptionDecorator
   def new_ec2 # {}
     @my_options[:new_ec2] = true
   end
+
+  def create_image name # {description: 'Create new AMI Image from this instance', arg: String, short: 'i'}
+    @my_options[:create_image] = name
+  end
+
+  def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}
+    @my_options[:reboot_ec2] = name
+  end
+
+  def stop_ec2 name # {description: 'Stop EC2 Instance ID', short: 'p', arg: String}
+  @my_options[:stop_ec2] = name
+  end
+
+  def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
+    @my_options[:start_ec2] = name
+  end
 end
 
 
@@ -140,6 +156,9 @@ puts "Using settings in: #{ec2_fname}"
 ec2_options = Ec2Options.load ec2_fname
 
 
+instance_options.execute!
+puts 'you set:'
+p instance_hash
 exit
 ### remove this:
 ec2_fname = format_fname 'default'
