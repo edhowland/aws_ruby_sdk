@@ -121,7 +121,7 @@ class InstanceOptions < OptionDecorator
     @my_options[:create_image] = name
   end
 
-  def image_name name # {description: 'Set the name of the new image [Req.]', arg: String, short: 'N'}
+  def image_name name # {description: 'Set the name of the new image [Req. if --create-image]', arg: String, short: 'N'}
   @my_options[:image_name] = name
   end
 
@@ -209,18 +209,15 @@ if instance_hash[:new_ec2]
     instances = ec2.create_instances @ec2_options.options
     puts "EC2 Instance ID: #{instances.first.id}"
 end
-exit
-### remove this:
-ec2_fname = format_fname 'default'
-puts "Using options from #{ec2_fname}"
-ec2_config = Ec2Options.load ec2_fname
-requestor = Ec2Requestor.new ec2_config
 
+if id = instance_hash[:create_image]
+  image_options =  {
+      name: instance_hash[:image_name]
+  }
+    image_options[:description] = instance_hash[:image_description] unless instance_hash[:image_description].nil?
 
-options('EC2 Instance Operations') do |opts|
-  requestor.set_options opts
+  image = handle_instance ec2, id, image_options do |instance, opts|
+    instance.create_image opts
+  end
+  describe_image image unless image.nil?
 end
-
-check_and_execute requestor
-
-
