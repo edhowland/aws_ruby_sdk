@@ -89,7 +89,6 @@ class Ec2Requestor < OptionDecorator
   end
 
   def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
-
     puts "Atteptemping to start instance with id: #{name}"
     response = handle_instance @ec2, name, { additional_info: "tarted by ec2_instance.rb"} do |instance, opts|
          instance.start opts
@@ -169,6 +168,14 @@ if instance_hash[:stop_ec2]
   handle_instance ec2, id do |instance, opts|
       instance.stop opts
   end
+end
+
+if instance_hash[:start_ec2]
+  id = instance_hash[:start_ec2]
+    puts "Attempting to start instance with id: #{id}"
+    response = handle_instance ec2, id, { additional_info: "tarted by ec2_instance.rb"} do |instance, opts|
+         instance.start opts
+    end
 end
 exit
 ### remove this:
