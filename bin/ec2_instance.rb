@@ -121,6 +121,14 @@ class InstanceOptions < OptionDecorator
     @my_options[:create_image] = name
   end
 
+  def image_name name # {description: 'Set the name of the new image [Req.]', arg: String, short: 'N'}
+  @my_options[:image_name] = name
+  end
+
+  def image_description name # {description: 'Set the description for the new image [Opt.]', short: 'D', arg: String}
+    @my_options[:image_description] = name
+  end
+
   def reboot_ec2 name # {description: 'Reboot EC2 Instance ID', arg: String, short: :nop}
     @my_options[:reboot_ec2] = name
   end
