@@ -193,6 +193,12 @@ if id = instance_hash[:reboot_ec2]
       instance.reboot opts
     end
 end
+
+if instance_hash[:new_ec2]
+  puts "Attempting to create new EC2 Instance with settings:"
+  p ec2_options.options
+
+end
 exit
 ### remove this:
 ec2_fname = format_fname 'default'
