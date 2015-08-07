@@ -198,6 +198,8 @@ if instance_hash[:new_ec2]
   puts "Attempting to create new EC2 Instance with settings:"
   p ec2_options.options
 
+    instances = ec2.create_instances @ec2_options.options
+    puts "EC2 Instance ID: #{instances.first.id}"
 end
 exit
 ### remove this:
