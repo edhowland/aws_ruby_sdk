@@ -211,10 +211,11 @@ if instance_hash[:new_ec2]
 end
 
 if id = instance_hash[:create_image]
-  image_options =  {
-      name: instance_hash[:image_name]
-  }
+  die('Missing setting: image-name forcreate-image') unless instance_hash[:image_name]
+  image_options =  { name: instance_hash[:image_name] }
     image_options[:description] = instance_hash[:image_description] unless instance_hash[:image_description].nil?
+  puts "Attempting to create new image from EC2 ID: #{id}"
+  p image_options
 
   image = handle_instance ec2, id, image_options do |instance, opts|
     instance.create_image opts
