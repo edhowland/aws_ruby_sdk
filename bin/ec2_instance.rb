@@ -136,7 +136,7 @@ class InstanceOptions < OptionDecorator
 end
 
 
-config_hash = {config_fname: format_fname('default')}
+config_hash = {config_fname: 'default'}
 config_file = ConfigFile.new config_hash
 
 instance_hash = {}
