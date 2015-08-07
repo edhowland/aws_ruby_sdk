@@ -132,6 +132,10 @@ class InstanceOptions < OptionDecorator
   def start_ec2  name # { description: 'Starts a running EC2 Instance ID', arg: String}
     @my_options[:start_ec2] = name
   end
+
+  def terminate_ec2 name # { description: 'Terminate EC2 Instance ID', arg: String}
+    @my_options[:terminate_ec2] = name
+  end
 end
 
 
@@ -176,6 +180,13 @@ if instance_hash[:start_ec2]
     response = handle_instance ec2, id, { additional_info: "tarted by ec2_instance.rb"} do |instance, opts|
          instance.start opts
     end
+end
+
+if id=instance_hash[:terminate_ec2]
+  puts "Attempting to terminate EC2 ID #{id}"
+  response = handle_instance ec2, id do |instance, opts|
+    instance.terminate opts
+  end
 end
 exit
 ### remove this:
