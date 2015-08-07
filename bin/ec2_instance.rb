@@ -8,7 +8,7 @@ require_relative 'config_file'
 require './messages'
 require_relative 'format_fname'
 require './requestor'
-require './handle_instance'
+require './handle_instance_fake'
 require './describe_image'
 
 # check key name syntax: must be form of: name.name
@@ -159,6 +159,17 @@ ec2_options = Ec2Options.load ec2_fname
 instance_options.execute!
 puts 'you set:'
 p instance_hash
+
+
+# execute requested actions
+ec2 = ec2_resource
+if instance_hash[:stop_ec2]
+  id = instance_hash[:stop_ec2]
+  puts "Attempting to stop #{id}"
+  handle_instance ec2, id do |instance, opts|
+      instance.stop opts
+  end
+end
 exit
 ### remove this:
 ec2_fname = format_fname 'default'
