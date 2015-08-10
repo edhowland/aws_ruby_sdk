@@ -24,8 +24,5 @@ class Ec2Options < JsonStore
       @options = that.options.merge @options
   end
 
-  def save
-    File.write(@fname, @options.to_json)
-  end
 end
 

@@ -19,4 +19,8 @@ class JsonStore
     options = JSON.load(File.read(fname))
     self.new fname, convert_keys(options)
   end
+
+  def save
+    File.write(@fname, @options.to_json)
+  end
 end
