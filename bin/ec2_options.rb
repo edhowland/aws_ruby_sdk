@@ -1,12 +1,10 @@
 # ec2_options.rb - class Ec2Options
 
-class Ec2Options
+class Ec2Options < JsonStore
   def initialize fname='ec2_default.json', options={}
-    @fname = fname
-    @options = options
+    super fname, options
   end
 
-  attr_accessor :fname, :options
 
   # initialize @options with sensible values: t1.micro, ami-xxxx
   def self.default
