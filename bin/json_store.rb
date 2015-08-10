@@ -9,6 +9,9 @@ class JsonStore
 
   attr_accessor :fname, :options
 
-  def convert_keys
+  def self.convert_keys options
+    symbol_options = {}
+    options.each_pair.each {|key, value| symbol_options[key.to_sym] = value } 
+    symbol_options
   end
 end

@@ -20,10 +20,7 @@ class Ec2Options < JsonStore
 
   def self.load fname
     options = JSON.load(File.read(fname))
-    # convert string keys to symbols
-    symbol_options = {}
-    options.each_pair.each {|key, value| symbol_options[key.to_sym] = value } 
-    self.new fname, symbol_options
+    self.new fname, convert_keys(options)
   end
 
   # merge two object of this class
