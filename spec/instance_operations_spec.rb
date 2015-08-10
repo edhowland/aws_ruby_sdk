@@ -9,7 +9,7 @@ describe InstanceOperations do
   describe 'stop' do
     before do
       @mock = mock
-      @mock.expect(:stop, nil)
+      @mock.expect(:stop, nil, [{}])
       @oper = InstanceOperations.new @mock
     end
 

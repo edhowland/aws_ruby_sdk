@@ -6,8 +6,12 @@ class InstanceOperations
     @instance = instance
   end
 
+  def perform operation, options={}
+    @instance.send(operation, options)  
+  end
+
   def stop
-    @instance.stop
+    perform :stop
   end
 
 end
