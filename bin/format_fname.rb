@@ -14,5 +14,5 @@ def format_fname name
 end
 
 def format_instance_fname name
-  ''
+  format_path(format_specific('instance', name))
 end
