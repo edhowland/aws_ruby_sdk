@@ -128,7 +128,7 @@ if instance_hash[:new_ec2]
 #binding.pry
     ec.create_instances ec2_options.options
   end
-  if instances.instance_of? Array
+  unless instances.nil?
     instance_id =instances.first.id
       puts "EC2 Instance ID: #{instance_id}"
     if instance_name=config_hash[:instance_name]
