@@ -10,7 +10,7 @@ class ConfigFile < OptionDecorator
     @my_options[:config_fname] = name
 end
 
-  def config_name name  # {description: 'Set the name of the configuration', arg: String, short: 'N'}
-    @my_options[:config_name] = name
+  def instance_name name  # {description: 'Set the name of the instance', arg: String, short: 'N'}
+    @my_options[:instance_name] = name
   end
 end

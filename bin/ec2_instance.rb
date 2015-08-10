@@ -3,7 +3,9 @@
 
 require_relative '../lib/application'
 require 'json'
+require_relative 'json_store'
 require_relative 'ec2_options'
+require_relative 'instance_store'
 require_relative 'config_file'
 require './messages'
 require_relative 'format_fname'
@@ -207,7 +209,11 @@ if instance_hash[:new_ec2]
   p ec2_options.options
 
     instances = ec2.create_instances @ec2_options.options
-    puts "EC2 Instance ID: #{instances.first.id}"
+  instance_id =instances.first.id
+    puts "EC2 Instance ID: #{instance_id}"
+  if instance_name=config_hash[:instance_name]
+    instance_store = InstanceStore.new instance_name, {instance_id: instance_id}    
+  end
 end
 
 if id = instance_hash[:create_image]
