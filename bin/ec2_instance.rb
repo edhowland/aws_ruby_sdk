@@ -125,6 +125,7 @@ if instance_hash[:new_ec2]
   p ec2_options.options
 
     instances = handle_ec2 ec2 do |ec|
+#binding.pry
     ec.create_instances ec2_options.options
   end
   if instances.instance_of? Array
