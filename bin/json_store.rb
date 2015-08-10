@@ -14,4 +14,9 @@ class JsonStore
     options.each_pair.each {|key, value| symbol_options[key.to_sym] = value } 
     symbol_options
   end
+
+  def self.load fname
+    options = JSON.load(File.read(fname))
+    self.new fname, convert_keys(options)
+  end
 end

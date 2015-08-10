@@ -18,10 +18,6 @@ class Ec2Options < JsonStore
     }
   end
 
-  def self.load fname
-    options = JSON.load(File.read(fname))
-    self.new fname, convert_keys(options)
-  end
 
   # merge two object of this class
   def merge! that
