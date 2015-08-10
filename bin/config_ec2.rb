@@ -20,11 +20,13 @@ class ConfigRequestor < OptionDecorator
 
 
   def dry_run # {description: 'Set dry_run parameter', short: 'y' }
+    puts 'Setting Dry Run'
     @ec2_config.options[:dry_run] = true
   end
 
   def no_dryrun # { description: 'Unset dry_run parameter' }
-    @ec2_config.options.delete :dry_run
+    puts 'unsetting dry run'
+    @ec2_config.options[:dry_run] = false
   end
 
   def key_pair name # {description: 'Set Key Pair name', arg: String}
@@ -79,6 +81,7 @@ end
 
 requestor.execute!
 
+#binding.pry
 if File.exists? ec2_fname
   existing_ec2 = Ec2Options.load(ec2_fname)
   ec2_options.merge! existing_ec2
@@ -91,5 +94,6 @@ if config_hash[:display]
 end
 
 # now save it output
+ec2_options.options.delete :dry_run if ec2_options.options[:dry_run] == false
 ec2_options.fname = ec2_fname
 ec2_options.save
