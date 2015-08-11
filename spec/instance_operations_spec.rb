@@ -34,6 +34,27 @@ end
     specify { subject; @mock.verify }
   end
 
+  describe 'describe' do
+    class InstanceAttrFake
+  def initialize
+    @called = false
+  end
+
+  attr_reader :called
+
+  def method_missing *args
+    @called = true
+  end
+  end
+
+  
+ before { @fake=InstanceAttrFake.new; @io=InstanceOperations.new(@fake) }
+    subject { @io.describe }
+
+    specify { subject.must_be_instance_of Hash }
+  specify { subject; @fake.called.must_equal true }
+  end
+
   class InstanceFake
   def stop options
       raise RuntimeError.new 'bad juju'

@@ -29,4 +29,14 @@ class InstanceOperations
   def terminate
     perform :terminate
   end
+
+  def describe
+    {instance_id: @instance.id,
+      public_ip: @instance.public_ip_address,
+      private_ip: @instance.private_ip_address,
+      state: @instance.state.name,
+      type: @instance.instance_type,
+      image: @instance.image.id
+}
+  end
 end

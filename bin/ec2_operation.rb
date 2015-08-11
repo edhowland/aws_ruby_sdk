@@ -15,6 +15,10 @@ class InstanceFlags < OptionDecorator
   def stop # {description: 'Stop EC2 instance', short: 'p'}
     @my_options[:stop] = true
   end
+
+  def describe # {description: 'Describe the instance' }
+    @my_options[:describe] = true
+  end
 end
 
 config_hash = {}
@@ -64,5 +68,11 @@ ec2 = ec2_resource
 if instance_hash[:stop]
   handle_instance ec2, instance_id do |instance|
     instance.stop
+  end
+end
+
+if instance_hash[:describe]
+  handle_instance ec2, instance_id do |instance|
+    p instance.describe
   end
 end
