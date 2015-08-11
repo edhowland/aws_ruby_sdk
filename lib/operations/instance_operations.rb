@@ -7,7 +7,11 @@ class InstanceOperations
   end
 
   def perform operation, options={}
-    @instance.send(operation, options)  
+    begin
+      @instance.send(operation, options)  
+    rescue => err
+    puts err.message
+    end
   end
 
   def stop

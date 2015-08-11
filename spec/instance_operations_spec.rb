@@ -17,4 +17,17 @@ describe InstanceOperations do
 
     specify { subject; @mock.verify }
 end
+
+  class InstanceFake
+  def stop options
+      raise RuntimeError.new 'bad juju'
+  end
+  end
+
+  describe 'stop raising exception' do
+    let(:oper) { InstanceOperations.new InstanceFake.new }
+    subject { oper.stop }
+
+    specify { subject }
+  end
 end
