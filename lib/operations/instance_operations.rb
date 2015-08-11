@@ -21,4 +21,8 @@ class InstanceOperations
   def start
     perform :start
   end
+
+  def reboot
+    perform :reboot
+  end
 end

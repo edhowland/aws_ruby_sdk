@@ -26,6 +26,14 @@ end
     specify { subject; @mock.verify }
   end
 
+  describe 'reboot' do
+    let(:rebooter) { m=mock; m.expect(:reboot, nil, [{}]); m }
+    before { @mock = rebooter }
+    subject { oper=InstanceOperations.new @mock; oper.reboot }
+
+    specify { subject; @mock.verify }
+  end
+
   class InstanceFake
   def stop options
       raise RuntimeError.new 'bad juju'
