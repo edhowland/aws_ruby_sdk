@@ -19,6 +19,10 @@ class InstanceFlags < OptionDecorator
   def describe # {description: 'Describe the instance' }
     @my_options[:describe] = true
   end
+
+  def json # {describe: 'Output in JSON' }
+    @my_options[:json] = true
+  end
 end
 
 config_hash = {}
@@ -73,6 +77,8 @@ end
 
 if instance_hash[:describe]
   handle_instance ec2, instance_id do |instance|
-    p instance.describe
+    describe_hash = instance.describe
+    (instance_hash[:json] and (p describe_hash.to_json)) or
+      p describe_hash
   end
 end
