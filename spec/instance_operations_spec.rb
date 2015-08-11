@@ -18,6 +18,14 @@ describe InstanceOperations do
     specify { subject; @mock.verify }
 end
 
+  describe 'start' do
+    let(:starter) { m=mock; m.expect(:start, nil, [{}]); m }
+    before { @mock=starter }
+    subject { oper=InstanceOperations.new @mock; oper.start }
+
+    specify { subject; @mock.verify }
+  end
+
   class InstanceFake
   def stop options
       raise RuntimeError.new 'bad juju'

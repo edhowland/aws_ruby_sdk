@@ -18,4 +18,7 @@ class InstanceOperations
     perform :stop
   end
 
+  def start
+    perform :start
+  end
 end
