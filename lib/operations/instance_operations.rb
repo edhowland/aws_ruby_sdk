@@ -34,6 +34,7 @@ class InstanceOperations
     {instance_id: @instance.id,
       public_ip: @instance.public_ip_address,
       private_ip: @instance.private_ip_address,
+      public_dns: @instance.public_dns_name,
       state: @instance.state.name,
       type: @instance.instance_type,
       image: @instance.image.id
