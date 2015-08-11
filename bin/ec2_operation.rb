@@ -27,3 +27,11 @@ options('EC2 Operation') do |opts|
   opts.separator ''
   instance_flags.set_options opts
 end
+
+config_file.execute!
+
+if iname=config_hash[:instance_name]
+
+else
+  die 'No instance name given. Use -N, --instance-name option'
+end
