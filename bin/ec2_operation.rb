@@ -31,11 +31,37 @@ end
 
 config_file.execute!
 
+instance_id = nil
 if iname=config_hash[:instance_name]
   ifname = format_instance_fname iname
-  p ifname
   instance_store = InstanceStore.load ifname
-  puts "Using instance id #{instance_store.options[:instance_id]}"
+  instance_id = instance_store.options[:instance_id]
+  puts "Using instance id: #{instance_id}"
 else
   die 'No instance name given. Use -N, --instance-name option'
+end
+
+instance_flags.execute!
+die('No operation given. Use -h, --help for a list of operations') if instance_hash.empty?
+
+def handle_instance ec2, id, &blk
+  response = nil
+  begin
+    instance = ec2.instance id
+    instance_operations = InstanceOperations.new instance
+    response = yield instance_operations
+  rescue => err
+    puts err.message
+  end
+
+  response
+end
+
+
+ec2 = ec2_resource
+
+if instance_hash[:stop]
+  handle_instance ec2, instance_id do |instance|
+    instance.stop
+  end
 end
