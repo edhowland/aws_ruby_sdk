@@ -4,6 +4,7 @@
 require 'json'
 require_relative '../lib/application'
 require_relative 'config_file'
+require_relative 'format_fname'
 
 class InstanceFlags < OptionDecorator
   def initialize options
@@ -31,7 +32,10 @@ end
 config_file.execute!
 
 if iname=config_hash[:instance_name]
-
+  ifname = format_instance_fname iname
+  p ifname
+  instance_store = InstanceStore.load ifname
+  puts "Using instance id #{instance_store.options[:instance_id]}"
 else
   die 'No instance name given. Use -N, --instance-name option'
 end
