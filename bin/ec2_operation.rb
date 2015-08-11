@@ -34,6 +34,7 @@ config_file.execute!
 instance_id = nil
 if iname=config_hash[:instance_name]
   ifname = format_instance_fname iname
+die("No Instance JSON for #{iname} in #{ifname}") unless File.exists? ifname
   instance_store = InstanceStore.load ifname
   instance_id = instance_store.options[:instance_id]
   puts "Using instance id: #{instance_id}"
