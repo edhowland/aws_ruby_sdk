@@ -46,4 +46,13 @@ end
 
     specify { subject }
   end
+
+  describe 'terminate' do
+
+  let(:term) { m=mock; m.expect(:terminate, nil, [{}]); m }
+    before { @mock=term }
+    subject { oper=InstanceOperations.new @mock; oper.terminate }
+
+    specify { subject; @mock.verify }
+  end
 end
