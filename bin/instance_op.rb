@@ -24,8 +24,12 @@ class InstanceFlags < OptionDecorator
     @my_options[:describe] = true
   end
 
-  def json # {describe: 'Output in JSON' }
+  def json # {description: 'Description output in JSON' }
     @my_options[:json] = true
+  end
+
+  def save # {description: 'Save state and ip addresses in named JSON', short: :nop}
+    @my_options[:save] = true
   end
 end
 
