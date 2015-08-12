@@ -100,3 +100,12 @@ if instance_hash[:describe]
       p describe_hash
   end
 end
+
+if instance_hash[:save]
+  istore = InstanceStore.new ifname
+  handle_instance ec2, instance_id do |instance|
+    istore.options = instance.describe
+    istore.save
+    puts "Current state of #{instance_id} stored in #{ifname}"
+  end
+end
