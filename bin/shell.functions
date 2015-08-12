@@ -1,0 +1,4 @@
+jqip () 
+{ 
+    ~/bin/jq -r '.public_ip' ~/.aws/instances/instance_${1}.json
+}
