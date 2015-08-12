@@ -76,12 +76,16 @@ ec2 = ec2_resource
 if instance_hash[:stop]
   handle_instance ec2, instance_id do |instance|
     instance.stop
+    puts "Instance #{instance_id} stop operation started"
+    puts "When done, you can describe it with : ./instance_op.rb -N #{iname} --describe"
   end
 end
 
 if instance_hash[:start]
   handle_instance ec2, instance_id do |instance|
     instance.start
+    puts "Instance #{instance_id} start operation started"
+    puts "When done, you can describe it with : ./instance_op -N #{iname} --describe"
   end
 end
 
