@@ -97,6 +97,13 @@ if instance_hash[:start]
   end
 end
 
+if instance_hash[:reboot]
+  handle_instance ec2, instance_id do |instance|
+    instance.reboot
+    puts "Instance #{instance_id} being rebooted"
+  end
+end
+
 if instance_hash[:describe]
   handle_instance ec2, instance_id do |instance|
     describe_hash = instance.describe
