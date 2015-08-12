@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# ec2_operation.rb - perform operation on EC2 instance
+# instance_op.rb - perform operation on EC2 instance
 
 require 'json'
 require_relative '../lib/application'
