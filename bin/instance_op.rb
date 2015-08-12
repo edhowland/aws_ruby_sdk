@@ -109,6 +109,16 @@ if instance_hash[:reboot]
   end
 end
 
+if instance_hash[:terminate]
+  handle_instance ec2, instance_id do |instance|
+    instance.terminate
+    puts "Instance #{instance_id} being terminated"
+    print "Do you want to delete the file: #{ifname}? (y/n): "
+    answer = gets.chomp
+  File.unlink(ifname) if answer =~ /yY/
+  end
+end
+
 if instance_hash[:describe]
   handle_instance ec2, instance_id do |instance|
     describe_hash = instance.describe
