@@ -23,4 +23,9 @@ class JsonStore
   def save
     File.write(@fname, @options.to_json)
   end
+
+  # merge two object of this class
+  def merge! that
+      @options = that.options.merge @options
+  end
 end
