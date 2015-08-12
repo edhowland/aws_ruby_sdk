@@ -37,9 +37,20 @@ $ ./import_key -f ~/ssh/key_name.pub -n key_name
 ## Configure the ec2_default.json and add the key pair name
 
 
-The existing file ec2_default.json is prepared with a simple t1.micro instance.
-All you need to do is add your key pair name you created in
-the prvious sstep.
+You can a new config JSON file with:
+
+
+```
+
+$ ./configure_ec2.rb --default
+
+```
+
+
+The file ec2_default.json you created in the last step
+is prepared with a simple t1.micro instance,
+and an Ubuntu14.04 image.
+All you need to do is add your key pair name:
 
 
 ```
