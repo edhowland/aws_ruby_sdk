@@ -19,7 +19,7 @@ describe InstanceOperations do
 end
 
   describe 'start' do
-    let(:starter) { m=mock; m.expect(:start, nil, [{}]); m }
+    let(:starter) { m=mock; m.expect(:start, nil, [{additional_info: 'Started by user request'}]); m }
     before { @mock=starter }
     subject { oper=InstanceOperations.new @mock; oper.start }
 
@@ -35,9 +35,26 @@ end
   end
 
   describe 'describe' do
+
+  class ImageFake
+  def id; ''; end
+  end
+
+  class StateFake
+  def name; ''; end
+  end
+
     class InstanceAttrFake
   def initialize
     @called = false
+  end
+
+  def image
+    ImageFake.new
+  end
+
+  def state
+    StateFake.new
   end
 
   attr_reader :called

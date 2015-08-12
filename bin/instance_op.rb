@@ -16,6 +16,10 @@ class InstanceFlags < OptionDecorator
     @my_options[:stop] = true
   end
 
+  def start # {description: 'Start Instance'}
+    @my_options[:start] = true
+  end
+
   def describe # {description: 'Describe the instance' }
     @my_options[:describe] = true
   end
@@ -72,6 +76,12 @@ ec2 = ec2_resource
 if instance_hash[:stop]
   handle_instance ec2, instance_id do |instance|
     instance.stop
+  end
+end
+
+if instance_hash[:start]
+  handle_instance ec2, instance_id do |instance|
+    instance.start
   end
 end
 

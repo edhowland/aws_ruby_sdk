@@ -19,7 +19,7 @@ class InstanceOperations
   end
 
   def start
-    perform :start
+    perform :start, {additional_info: 'Started by user request'}
   end
 
   def reboot
