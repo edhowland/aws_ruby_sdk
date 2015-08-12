@@ -1,3 +1,7 @@
+# utility shell functions for JSON files
+# must have jq pkg installed
+
+# return public IP from named json file
 jqip () 
 { 
     ~/bin/jq -r '.public_ip' ~/.aws/instances/instance_${1}.json
