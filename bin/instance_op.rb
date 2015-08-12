@@ -20,6 +20,10 @@ class InstanceFlags < OptionDecorator
     @my_options[:start] = true
   end
 
+  def reboot # {description: 'Reboot running instance', short: :nop}
+    @my_options[:reboot] = true
+  end
+
   def describe # {description: 'Describe the instance' }
     @my_options[:describe] = true
   end
